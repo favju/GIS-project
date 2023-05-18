@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgis/postgis
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - "5432:5432"
+  api:
+    build: ./Backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./Backend:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  vue:
+    container_name: my_frontend
+    image: node:lts
+    working_dir: /var/www/html/app/
+    entrypoint: /bin/bash
+    ports:
+      - "8080:8080"
+    command: npm run dev
+    volumes:
+      - ./Frontend/:/var/www/html/app
+    tty: true
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
