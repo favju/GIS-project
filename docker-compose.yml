@@ -21,15 +21,14 @@ services:
     depends_on:
       - db
   vue:
-    container_name: my_frontend
     image: node:lts
-    working_dir: /var/www/html/app/
-    entrypoint: /bin/bash
+    working_dir: /var/www/html/app/vue-leaflet
+    entrypoint: /usr/local/bin/docker-entrypoint.sh
     ports:
       - "8080:8080"
-    command: npm run dev
     volumes:
-      - ./Frontend/:/var/www/html/app
+      - ./Frontend:/var/www/html/app
+    command: sh -c "npm install && npm run dev"
     tty: true
   pgadmin:
     container_name: pgadmin4_container

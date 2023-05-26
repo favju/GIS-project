@@ -21,7 +21,7 @@ export default {
       L.tileLayer("https://tile.osm.ch/switzerland/{z}/{x}/{y}.png", {
         maxZoom: 18,
         attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          '&copy; <a href="https://wmts.geo.admin.ch/EPSG/3857/1.0.0/WMTSCapabilities.xml?lang=de">OpenStreetMap</a> contributors',
         bounds: [
           [45, 5],
           [48, 11],
