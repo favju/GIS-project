@@ -1,14 +1,31 @@
 <template>
+  <my-header />
   <my-map />
+  <my-footer />
 </template>
 <script>
-import Map from './components/Map.vue';
+import Map from './components/Map.vue'
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue';
 
 export default {
   name: "app",
   components: {
-    myMap: Map
+    myHeader: Header,
+    myMap: Map,
+    myFooter: Footer
   }
 }
 </script>
+<style>
+#app {
+  background-color: #222;
+  width: 100vw;
+  min-width: 100vw;
+  height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+</style>
 
