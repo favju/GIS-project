@@ -1,10 +1,10 @@
 <template>
   <my-header />
-  <my-map />
+  <my-Vue />
   <my-footer />
 </template>
 <script>
-import Map from './components/Map.vue'
+import Home from './views/Home.vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue';
 
@@ -12,7 +12,7 @@ export default {
   name: "app",
   components: {
     myHeader: Header,
-    myMap: Map,
+    myVue: Home,
     myFooter: Footer
   }
 }
