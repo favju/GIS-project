@@ -1,6 +1,6 @@
 <template>
   <my-header />
-  <my-Vue />
+  <router-view />
   <my-footer />
 </template>
 <script>
