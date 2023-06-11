@@ -13,11 +13,13 @@ export default {
     data() {
         return {
             center: [46.30942535215705, 7.0930909682770364],
+            mapDiv: null,
+            test: 12
         };
     },
     methods: {
         setupLeafletMap: function () {
-            const mapDiv = L.map("mapContainer").setView(this.center, 13);
+
             L.tileLayer("https://tile.osm.ch/switzerland/{z}/{x}/{y}.png", {
                 maxZoom: 18,
                 attribution:
@@ -26,10 +28,14 @@ export default {
                     [45, 5],
                     [48, 11],
                 ],
-            }).addTo(mapDiv);
+            }).addTo(this.mapDiv);
         },
+        testMethode() {
+            console.log("hello from the mapityMap")
+        }
     },
     mounted() {
+        this.mapDiv = L.map("mapContainer").setView(this.center, 13)
         this.setupLeafletMap();
     },
 };

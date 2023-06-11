@@ -4,7 +4,6 @@
   <my-footer />
 </template>
 <script>
-import Home from './views/Home.vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue';
 
@@ -12,7 +11,6 @@ export default {
   name: "app",
   components: {
     myHeader: Header,
-    myVue: Home,
     myFooter: Footer
   }
 }

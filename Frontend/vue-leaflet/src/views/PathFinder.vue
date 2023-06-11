@@ -1,6 +1,11 @@
 <template>
     <h1>Find a path brother</h1>
-    <myMap />
+    <div class="mapAndInfo">
+        <myMap />
+        <div>
+            This the way
+        </div>
+    </div>
 </template>
 <script>
 import Map from '../components/Map.vue'
@@ -12,3 +17,9 @@ export default {
 }
 
 </script>
+
+<style>
+.mapAndInfo {
+    display: flex;
+}
+</style>
