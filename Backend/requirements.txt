@@ -1,3 +1,6 @@
-django
-djangorestframework
+Django>=3.0,<4.0
 psycopg2-binary>=2.8
+django-leaflet
+djangorestframework
+dj-rest-auth
+djangorestframework-gis
