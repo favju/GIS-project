@@ -46,21 +46,352 @@ export default {
         testAddLayer() {
             console.log("coucou")
             //L.geoJSON(this.skilift.features).addTo(this.$refs.mapy.mapDiv);
-            var myLines = [{
-                "type": "LineString",
-                "coordinates": [[46.30942535215705, 7.0930909682770364], [-105, 45], [-110, 55]]
-            },
-            {
-                "type": "LineString",
-                "coordinates": [[46.30942535215705, 7.0930909682770364], [-110, 45], [-115, 55]]
-            },
-            {
-                "type": "MultiLineString",
-                "coordinates": [[[570977.149093960644677, 130646.476673743658466, 0.0], [571850.833295980701223, 129980.533324277654174, 0.0]]]
-            }];
+            var myLines = {
+                "type": "FeatureCollection",
+                "features": [
+                    {
+                        "id": 1,
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "MultiLineString",
+                            "coordinates": [
+                                [
+                                    [
+                                        7.061777820889852,
+                                        46.32658352549184,
+                                        0.0
+                                    ],
+                                    [
+                                        7.07316297104453,
+                                        46.320630320259575,
+                                        0.0
+                                    ]
+                                ]
+                            ]
+                        },
+                        "properties": {
+                            "name": "Grand Chamossaire",
+                            "length": "1098.5466",
+                            "maxseat": 8,
+                            "type": "Télésiège"
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "MultiLineString",
+                            "coordinates": [
+                                [
+                                    [
+                                        7.073629077305652,
+                                        46.32254433015707,
+                                        0.0
+                                    ],
+                                    [
+                                        7.072878901280944,
+                                        46.324648681813,
+                                        0.0
+                                    ]
+                                ]
+                            ]
+                        },
+                        "properties": {
+                            "name": "Lac de Bretaye",
+                            "length": "240.9596",
+                            "maxseat": 1,
+                            "type": "Télésiège"
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "MultiLineString",
+                            "coordinates": [
+                                [
+                                    [
+                                        7.078462417674921,
+                                        46.326988931944015,
+                                        0.0
+                                    ],
+                                    [
+                                        7.075532270198576,
+                                        46.324978731942906,
+                                        0.0
+                                    ],
+                                    [
+                                        7.07501018711162,
+                                        46.32434813600384,
+                                        0.0
+                                    ],
+                                    [
+                                        7.074987860783339,
+                                        46.322803535250245,
+                                        0.0
+                                    ]
+                                ]
+                            ]
+                        },
+                        "properties": {
+                            "name": "Lac Noir-Bretaye",
+                            "length": "570.1080",
+                            "maxseat": 1,
+                            "type": "Assiette"
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "MultiLineString",
+                            "coordinates": [
+                                [
+                                    [
+                                        7.078260824718225,
+                                        46.327521795800976,
+                                        0.0
+                                    ],
+                                    [
+                                        7.085049262393745,
+                                        46.32075419337714,
+                                        0.0
+                                    ]
+                                ]
+                            ]
+                        },
+                        "properties": {
+                            "name": "Lac Noir-Chaux Ronde",
+                            "length": "916.1437",
+                            "maxseat": 8,
+                            "type": "Assiette"
+                        }
+                    },
+                    {
+                        "id": 5,
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "MultiLineString",
+                            "coordinates": [
+                                [
+                                    [
+                                        7.073789357452663,
+                                        46.32110846000984,
+                                        0.0
+                                    ],
+                                    [
+                                        7.083749909988617,
+                                        46.320660538625205,
+                                        0.0
+                                    ]
+                                ]
+                            ]
+                        },
+                        "properties": {
+                            "name": "Chaux Ronde 1",
+                            "length": "768.7715",
+                            "maxseat": 2,
+                            "type": "Arbalète"
+                        }
+                    },
+                    {
+                        "id": 6,
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "MultiLineString",
+                            "coordinates": [
+                                [
+                                    [
+                                        7.073777838651711,
+                                        46.321034523700675,
+                                        0.0
+                                    ],
+                                    [
+                                        7.083735850080176,
+                                        46.32059214264119,
+                                        0.0
+                                    ]
+                                ]
+                            ]
+                        },
+                        "properties": {
+                            "name": "Chaux Ronde 2",
+                            "length": "768.5375",
+                            "maxseat": 1,
+                            "type": "Assiette"
+                        }
+                    },
+                    {
+                        "id": 7,
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "MultiLineString",
+                            "coordinates": [
+                                [
+                                    [
+                                        7.083974223705043,
+                                        46.32058761367021,
+                                        0.0
+                                    ],
+                                    [
+                                        7.089453234285955,
+                                        46.30179174858916,
+                                        0.0
+                                    ]
+                                ]
+                            ]
+                        },
+                        "properties": {
+                            "name": "Rasse-Chaux Ronde",
+                            "length": "2131.6483",
+                            "maxseat": 8,
+                            "type": "Télésiège"
+                        }
+                    },
+                    {
+                        "id": 8,
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "MultiLineString",
+                            "coordinates": [
+                                [
+                                    [
+                                        7.06712845016349,
+                                        46.331504685993345,
+                                        0.0
+                                    ],
+                                    [
+                                        7.079818345804262,
+                                        46.32986763708535,
+                                        0.0
+                                    ]
+                                ]
+                            ]
+                        },
+                        "properties": {
+                            "name": "Petit Chamossaire",
+                            "length": "993.9945",
+                            "maxseat": 8,
+                            "type": "Télésiège"
+                        }
+                    },
+                    {
+                        "id": 9,
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "MultiLineString",
+                            "coordinates": [
+                                [
+                                    [
+                                        7.064519922599697,
+                                        46.322821591821686,
+                                        0.0
+                                    ],
+                                    [
+                                        7.063374173279666,
+                                        46.3219653156166,
+                                        0.0
+                                    ],
+                                    [
+                                        7.062895537891435,
+                                        46.321873210853305,
+                                        0.0
+                                    ],
+                                    [
+                                        7.058159167459981,
+                                        46.322866489955366,
+                                        0.0
+                                    ],
+                                    [
+                                        7.057138398890318,
+                                        46.32354223898237,
+                                        0.0
+                                    ]
+                                ]
+                            ]
+                        },
+                        "properties": {
+                            "name": "Combe d'Orsay",
+                            "length": "657.9211",
+                            "maxseat": 1,
+                            "type": "Assiete"
+                        }
+                    },
+                    {
+                        "id": 10,
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "MultiLineString",
+                            "coordinates": [
+                                [
+                                    [
+                                        7.064161689949776,
+                                        46.32165500021003,
+                                        0.0
+                                    ],
+                                    [
+                                        7.066420077313878,
+                                        46.32107350910214,
+                                        0.0
+                                    ],
+                                    [
+                                        7.070522528441462,
+                                        46.32107161343148,
+                                        0.0
+                                    ],
+                                    [
+                                        7.072032168231004,
+                                        46.32136861214563,
+                                        0.0
+                                    ],
+                                    [
+                                        7.073007218563503,
+                                        46.32135133400353,
+                                        0.0
+                                    ]
+                                ]
+                            ]
+                        },
+                        "properties": {
+                            "name": "Bretaye-Orsay",
+                            "length": "697.5191",
+                            "maxseat": 1,
+                            "type": "Assiete"
+                        }
+                    },
+                    {
+                        "id": 11,
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "MultiLineString",
+                            "coordinates": [
+                                [
+                                    [
+                                        7.054960976333546,
+                                        46.30363750906064,
+                                        0.0
+                                    ],
+                                    [
+                                        7.063847090752126,
+                                        46.32207244853415,
+                                        0.0
+                                    ]
+                                ]
+                            ]
+                        },
+                        "properties": {
+                            "name": "Roc D'Orsay",
+                            "length": "2160.6192",
+                            "maxseat": 8,
+                            "type": "Cabine"
+                        }
+                    }
+                ]
+            };
+
 
             var myStyle = {
-                "color": "#ff7800",
+                "color": "blue",
                 "weight": 5,
                 "opacity": 0.65
             };

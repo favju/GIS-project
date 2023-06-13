@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
@@ -36,10 +37,13 @@ export default {
     },
     mounted() {
         this.mapDiv = L.map("mapContainer").setView(this.center, 13)
+        //L.tileLayer.swiss().addTo(this.mapDiv);
+
         this.setupLeafletMap();
     },
 };
 </script>
+
 
 <style scoped>
 #mapContainer {
