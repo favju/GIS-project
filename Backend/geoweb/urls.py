@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from swissgeo.views import UserViewSet, SkiliftViewSet
+from swissgeo.views import UserViewSet, SkiliftViewSet, SlopeViewSet
 
 router = routers.DefaultRouter()
 router.register('users', UserViewSet)
 router.register('skilifts', SkiliftViewSet)
+router.register('slopes', SlopeViewSet)
 
 urlpatterns = [ 
     path('admin/', admin.site.urls),
