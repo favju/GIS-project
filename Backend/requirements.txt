@@ -4,3 +4,4 @@ django-leaflet
 djangorestframework
 dj-rest-auth
 djangorestframework-gis
+django-cors-headers==3.14.0
