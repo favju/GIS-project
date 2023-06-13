@@ -1,0 +1,408 @@
+[
+  {
+    "model": "swissgeo.skilift",
+    "pk": 1,
+    "fields": {
+      "name": "Grand Chamossaire",
+      "length": "1098.546599",
+      "maxseat": 8,
+      "type": "Télésiège",
+      "geom": "SRID=4326;MULTILINESTRING Z ((7.061777820889852 46.32658352549184 0, 7.07316297104453 46.32063032025957 0))"
+    }
+  },
+  {
+    "model": "swissgeo.skilift",
+    "pk": 2,
+    "fields": {
+      "name": "Lac de Bretaye",
+      "length": "240.959584",
+      "maxseat": 1,
+      "type": "Télésiège",
+      "geom": "SRID=4326;MULTILINESTRING Z ((7.073629077305652 46.32254433015707 0, 7.072878901280944 46.324648681813 0))"
+    }
+  },
+  {
+    "model": "swissgeo.skilift",
+    "pk": 3,
+    "fields": {
+      "name": "Lac Noir-Bretaye",
+      "length": "570.108049",
+      "maxseat": 1,
+      "type": "Assiette",
+      "geom": "SRID=4326;MULTILINESTRING Z ((7.078462417674921 46.32698893194402 0, 7.075532270198576 46.32497873194291 0, 7.07501018711162 46.32434813600384 0, 7.074987860783339 46.32280353525024 0))"
+    }
+  },
+  {
+    "model": "swissgeo.skilift",
+    "pk": 4,
+    "fields": {
+      "name": "Lac Noir-Chaux Ronde",
+      "length": "916.143726",
+      "maxseat": 8,
+      "type": "Assiette",
+      "geom": "SRID=4326;MULTILINESTRING Z ((7.078260824718225 46.32752179580098 0, 7.085049262393745 46.32075419337714 0))"
+    }
+  },
+  {
+    "model": "swissgeo.skilift",
+    "pk": 5,
+    "fields": {
+      "name": "Chaux Ronde 1",
+      "length": "768.771469",
+      "maxseat": 2,
+      "type": "Arbalète",
+      "geom": "SRID=4326;MULTILINESTRING Z ((7.073789357452663 46.32110846000984 0, 7.083749909988617 46.32066053862521 0))"
+    }
+  },
+  {
+    "model": "swissgeo.skilift",
+    "pk": 6,
+    "fields": {
+      "name": "Chaux Ronde 2",
+      "length": "768.537512",
+      "maxseat": 1,
+      "type": "Assiette",
+      "geom": "SRID=4326;MULTILINESTRING Z ((7.073777838651711 46.32103452370067 0, 7.083735850080176 46.32059214264119 0))"
+    }
+  },
+  {
+    "model": "swissgeo.skilift",
+    "pk": 7,
+    "fields": {
+      "name": "Rasse-Chaux Ronde",
+      "length": "2131.648343",
+      "maxseat": 8,
+      "type": "Télésiège",
+      "geom": "SRID=4326;MULTILINESTRING Z ((7.083974223705043 46.32058761367021 0, 7.089453234285955 46.30179174858916 0))"
+    }
+  },
+  {
+    "model": "swissgeo.skilift",
+    "pk": 8,
+    "fields": {
+      "name": "Petit Chamossaire",
+      "length": "993.994519",
+      "maxseat": 8,
+      "type": "Télésiège",
+      "geom": "SRID=4326;MULTILINESTRING Z ((7.06712845016349 46.33150468599334 0, 7.079818345804262 46.32986763708535 0))"
+    }
+  },
+  {
+    "model": "swissgeo.skilift",
+    "pk": 9,
+    "fields": {
+      "name": "Combe d'Orsay",
+      "length": "657.921091",
+      "maxseat": 1,
+      "type": "Assiete",
+      "geom": "SRID=4326;MULTILINESTRING Z ((7.064519922599697 46.32282159182169 0, 7.063374173279666 46.3219653156166 0, 7.062895537891435 46.3218732108533 0, 7.058159167459981 46.32286648995537 0, 7.057138398890318 46.32354223898237 0))"
+    }
+  },
+  {
+    "model": "swissgeo.skilift",
+    "pk": 10,
+    "fields": {
+      "name": "Bretaye-Orsay",
+      "length": "697.519059",
+      "maxseat": 1,
+      "type": "Assiete",
+      "geom": "SRID=4326;MULTILINESTRING Z ((7.064161689949776 46.32165500021003 0, 7.066420077313878 46.32107350910214 0, 7.070522528441462 46.32107161343148 0, 7.072032168231004 46.32136861214563 0, 7.073007218563503 46.32135133400353 0))"
+    }
+  },
+  {
+    "model": "swissgeo.skilift",
+    "pk": 11,
+    "fields": {
+      "name": "Roc D'Orsay",
+      "length": "2160.619156",
+      "maxseat": 8,
+      "type": "Cabine",
+      "geom": "SRID=4326;MULTILINESTRING Z ((7.054960976333546 46.30363750906064 0, 7.063847090752126 46.32207244853415 0))"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 4,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 4,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 4,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 4,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 5,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 5,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 5,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 5,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 6,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 6,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 6,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 6,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$U1XmO3NRmfyJRK9ftVUtMt$VCabYOUX79+rrO3HNTXnuvlfNT7sitdtwXTPBNWF/I4=",
+      "last_login": "2023-06-09T15:23:06.389Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-05-26T14:47:53.595Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": { "app_label": "admin", "model": "logentry" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": { "app_label": "auth", "model": "permission" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": { "app_label": "auth", "model": "group" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": { "app_label": "auth", "model": "user" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": { "app_label": "contenttypes", "model": "contenttype" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": { "app_label": "sessions", "model": "session" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": { "app_label": "swissgeo", "model": "skilift" }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "61u9glqcx9g6gjb6cdc4q4azpdowh472",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2pDilBJcuvcMZIYZpGogKe2q8e5K0oVu_3vv7yrgtuawNVnCzOqijDr9boTxKaUDfmC5Vx1rWZeZdFf0QZu-VZbX9XD_DjK2_K1tTGf0mJIRTmDZWhoYvRscIAGL8SQ0jaMY4xO5iYAARpHYuyhWvT8ZcDl3:1q2Yjp:FVAJbMaH_hi6fnFox5oONYUJN6ZHcna_k93T5molgXg",
+      "expire_date": "2023-06-09T14:48:17.992Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "m11an1z5h195y6pdj7psu3z2c6pzy2c4",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGln-x6Kk5wzWeneNA8iW4qRC3B0ipYD2zcx7iQTbWtM2eEkzibPQ4vS7ZcAHtx3QHdqtS-xtXeYsd0UedMhrJ35eDvfvoMKo3xqMDo6LDdkbJO-zi0qhsnpyMeDEPrJxJULQgaND4mi9dSUz6aCMseL9Ac2DNz0:1q7dxC:pLhG3esJWJ9sZLfSl9EYB2nZpY_MvbZQoKCdXaogW84",
+      "expire_date": "2023-06-23T15:23:06.394Z"
+    }
+  }
+]
