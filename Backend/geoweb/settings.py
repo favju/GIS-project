@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'swissgeo.apps.SwissgeoConfig',
+    'rest_framework',
+    'rest_framework_gis',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -136,4 +138,18 @@ LEAFLET_CONFIG ={
    'MAX_ZOOM':15,    
    'DEFAULT_ZOOM':7,    
    'DEFAULT_CENTER': (46.7,8),
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    )
+}
+
+REST_AUTH = {
+
 }
