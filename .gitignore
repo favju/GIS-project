@@ -1,2 +1,6 @@
 /.dockerignore
-venv/
+/venv
+/data
+Backend/geoweb/__pycache__
+__pycache__/
+*.pyc
