@@ -82,9 +82,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'db',
+        'USER': 'postgres@gis-project-db',
+        'PASSWORD': 'eSTGz5Yyjti45GB13laj%',
+        'HOST': 'gis-project-db.postgres.database.azure.com',
         'PORT': '5432',
     }
 }
