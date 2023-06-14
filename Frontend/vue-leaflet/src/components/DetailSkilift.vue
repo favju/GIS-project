@@ -12,7 +12,7 @@
 </template>
 <script>
 export default {
-    name: "Detail",
+    name: "DetailSkilift",
     data() {
         return {
             skilift: { "name": "Rasse-Chaux Ronde", "length": "2131.6483", "maxseat": 8, "type": "Télésiège" }

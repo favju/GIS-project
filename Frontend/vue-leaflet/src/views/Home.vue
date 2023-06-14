@@ -2,14 +2,16 @@
     <h1>Explore the resort</h1>
     <div class="mapAndInfo">
         <Map ref="mapy" />
-        <Detail ref="detaily" />
+        <DetailSkilift ref="detailSkilift" v-if="this.detail === 'skilift'" />
+        <DetailSlope ref="detailSlope" v-if="this.detail === 'slope'" />
     </div>
 
     <button @click="testAddLayer()">hello</button>
 </template>
 <script>
 import Map from '../components/Map.vue'
-import Detail from '../components/Detail.vue'
+import DetailSkilift from '../components/DetailSkilift.vue'
+import DetailSlope from '../components/DetailSlope.vue'
 import skiliftService from '../services/skiliftService.js'
 import slopeService from '../services/slopeService.js'
 
@@ -17,11 +19,12 @@ export default {
     name: "Home",
     components: {
         Map,
-        Detail
+        DetailSkilift,
+        DetailSlope
     },
     data() {
         return {
-            detail: "lorem ipsum"
+            detail: ""
         }
     },
     async mounted() {
@@ -57,7 +60,7 @@ export default {
                 {
                     style: myStyleBlue,
                     onEachFeature: (feature, layer) => {
-                        layer.bindPopup(feature.properties.name);
+                        //layer.bindPopup(feature.properties.name);
                         layer.bindTooltip(feature.properties.name).openTooltip();
                         layer.on('click', (ev) => {
                             this.changeDetailSkilift(feature.properties) // ev is an event object (MouseEvent in this case)
@@ -71,7 +74,7 @@ export default {
                 {
                     style: myStyleRed,
                     onEachFeature: (feature, layer) => {
-                        layer.bindPopup(feature.properties.name);
+                        //layer.bindPopup(feature.properties.name);
                         layer.bindTooltip(feature.properties.name).openTooltip();
                         layer.on('click', (ev) => {
                             this.changeDetailSlope(feature.properties) // ev is an event object (MouseEvent in this case)
@@ -84,10 +87,13 @@ export default {
         },
 
         changeDetailSkilift(content) {
-            this.$refs.detaily.skilift = content
+            this.detail = "skilift"
+            this.$refs.detailSkilift.skilift = content
         },
+
         changeDetailSlope(content) {
-            this.$refs.detaily.skilift = content
+            this.detail = "slope"
+            this.$refs.detailSlope.slope = content
         },
 
 
