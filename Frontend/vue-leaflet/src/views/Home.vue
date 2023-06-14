@@ -2,22 +2,22 @@
     <h1>Explore the resort</h1>
     <div class="mapAndInfo">
         <Map ref="mapy" />
-        <div>
-            {{ detail }}
-        </div>
+        <Detail ref="detaily" />
     </div>
 
     <button @click="testAddLayer()">hello</button>
 </template>
 <script>
 import Map from '../components/Map.vue'
+import Detail from '../components/Detail.vue'
 import skiliftService from '../services/skiliftService.js'
 import slopeService from '../services/slopeService.js'
 
 export default {
     name: "Home",
     components: {
-        Map
+        Map,
+        Detail
     },
     data() {
         return {
@@ -60,7 +60,7 @@ export default {
                         layer.bindPopup(feature.properties.name);
                         layer.bindTooltip(feature.properties.name).openTooltip();
                         layer.on('click', (ev) => {
-                            this.changeDetail(feature.properties) // ev is an event object (MouseEvent in this case)
+                            this.changeDetailSkilift(feature.properties) // ev is an event object (MouseEvent in this case)
 
                         });
                     },
@@ -74,7 +74,7 @@ export default {
                         layer.bindPopup(feature.properties.name);
                         layer.bindTooltip(feature.properties.name).openTooltip();
                         layer.on('click', (ev) => {
-                            this.changeDetail(feature.properties) // ev is an event object (MouseEvent in this case)
+                            this.changeDetailSlope(feature.properties) // ev is an event object (MouseEvent in this case)
 
                         });
 
@@ -83,9 +83,13 @@ export default {
 
         },
 
-        changeDetail(content) {
-            this.detail = content
+        changeDetailSkilift(content) {
+            this.$refs.detaily.skilift = content
         },
+        changeDetailSlope(content) {
+            this.$refs.detaily.skilift = content
+        },
+
 
     }
 }
