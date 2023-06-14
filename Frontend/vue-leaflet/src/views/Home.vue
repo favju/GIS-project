@@ -34,9 +34,9 @@ export default {
     },
     async mounted() {
         //L.geoJSON(this.skilift.features).addTo(this.$refs.mapy.mapDiv);
-        slopeService.getSlopes();
-        skiliftService.getSkilifts();
-
+        await slopeService.getSlopes();
+        await skiliftService.getSkilifts();
+        this.testAddLayer();
     },
 
     computed: {
@@ -87,12 +87,13 @@ export default {
                         });
 
                     }
-                });
+                }).addTo(this.$refs.mapy.mapDiv);
             //}).addTo(this.$refs.mapy.mapDiv);
             //this.slopeLayer.addTo(this.$refs.mapy.mapDiv);
             //let layerControl = L.control.layers(this.slopeLayer).addTo(this.$refs.mapy.mapDiv);
-            this.$refs.mapy.layerControl.addOverlay(this.slopeLayer, "Slopes")
+
             this.$refs.mapy.layerControl.addOverlay(this.skiliftLayer, "Skilifts")
+            this.$refs.mapy.layerControl.addOverlay(this.slopeLayer, "Slopes")
 
         },
 

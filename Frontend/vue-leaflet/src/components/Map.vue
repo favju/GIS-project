@@ -9,6 +9,7 @@
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
+
 export default {
     name: "Map",
     data() {
@@ -41,15 +42,22 @@ export default {
                 ],
             });
 
+            // var satelliteLayer = L.tileLayer.swiss({
+            //     layer: 'ch.swisstopo.swissimage',
+            //     maxNativeZoom: 28
+            // });
+
+
             this.mapDiv = L.map('mapContainer', {
-                center: [46.30942535215705, 7.0930909682770364],
-                zoom: 10,
+                center: [46.319086, 7.072506],
+                zoom: 13,
                 layers: [osm]
             });
 
             var baseMaps = {
                 "OpenStreetMap": osm,
-                "OpenStreetMap.HOT": osmSwiss
+                "OpenStreetMap.HOT": osmSwiss,
+                //"Satellite": satelliteLayer
             };
 
             var overlayMaps = {
