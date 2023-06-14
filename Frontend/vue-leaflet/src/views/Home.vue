@@ -4,14 +4,16 @@
         <Map ref="mapy" />
         <DetailSkilift ref="detailSkilift" v-if="this.detail === 'skilift'" />
         <DetailSlope ref="detailSlope" v-if="this.detail === 'slope'" />
+        <DetailSlope ref="detailRestaurant" v-if="this.detail === 'restaurant'" />
     </div>
-
+    <button @click="testMakeTransparent()">makeTransparent</button>
     <button @click="testAddLayer()">hello</button>
 </template>
 <script>
 import Map from '../components/Map.vue'
 import DetailSkilift from '../components/DetailSkilift.vue'
 import DetailSlope from '../components/DetailSlope.vue'
+import DetailRestaurant from '../components/DetailRestaurant.vue'
 import skiliftService from '../services/skiliftService.js'
 import slopeService from '../services/slopeService.js'
 
@@ -20,11 +22,14 @@ export default {
     components: {
         Map,
         DetailSkilift,
-        DetailSlope
+        DetailSlope,
+        DetailRestaurant
     },
     data() {
         return {
-            detail: ""
+            detail: "",
+            slopeLayer: null,
+            skiliftLayer: null,
         }
     },
     async mounted() {
@@ -56,7 +61,7 @@ export default {
                 "opacity": 0.65
             };
 
-            L.geoJSON(this.skilifts,
+            this.skiliftLayer = L.geoJSON(this.skilifts,
                 {
                     style: myStyleBlue,
                     onEachFeature: (feature, layer) => {
@@ -70,7 +75,7 @@ export default {
 
                 }).addTo(this.$refs.mapy.mapDiv);
 
-            L.geoJSON(this.slopes,
+            this.slopeLayer = L.geoJSON(this.slopes,
                 {
                     style: myStyleRed,
                     onEachFeature: (feature, layer) => {
@@ -82,7 +87,12 @@ export default {
                         });
 
                     }
-                }).addTo(this.$refs.mapy.mapDiv);
+                });
+            //}).addTo(this.$refs.mapy.mapDiv);
+            //this.slopeLayer.addTo(this.$refs.mapy.mapDiv);
+            //let layerControl = L.control.layers(this.slopeLayer).addTo(this.$refs.mapy.mapDiv);
+            this.$refs.mapy.layerControl.addOverlay(this.slopeLayer, "Slopes")
+            this.$refs.mapy.layerControl.addOverlay(this.skiliftLayer, "Skilifts")
 
         },
 
@@ -96,6 +106,14 @@ export default {
             this.$refs.detailSlope.slope = content
         },
 
+        changeDetailRestaurant(content) {
+            this.detail = "restaurant"
+            this.$refs.detailRestaurant.restaurent = content
+        },
+
+        testMakeTransparent() {
+            this.slopeLayer.setStyle({ fillColor: 'black' })
+        }
 
     }
 }
