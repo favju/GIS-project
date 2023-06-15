@@ -1,5 +1,6 @@
 /.dockerignore
 /venv
+Frontend/vue-leaflet/venv
 /data
 Backend/geoweb/__pycache__
 Backend/swissgeo/__pycache__
