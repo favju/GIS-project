@@ -95,7 +95,7 @@ DATABASES = {
         'USER': 'postgres@gis-project-db',
         'PASSWORD': 'eSTGz5Yyjti45GB13laj%',
         'HOST': 'gis-project-db.postgres.database.azure.com',
-        'PORT': '5432',
+        'PORT': '5432'
     }
 }
 
