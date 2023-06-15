@@ -6,8 +6,6 @@
         <DetailSlope ref="detailSlope" v-if="this.detail === 'slope'" />
         <DetailSlope ref="detailRestaurant" v-if="this.detail === 'restaurant'" />
     </div>
-    <button @click="testMakeTransparent()">makeTransparent</button>
-    <button @click="testAddLayer()">hello</button>
 </template>
 <script>
 import Map from '../components/Map.vue'
@@ -53,12 +51,12 @@ export default {
             var myStyleBlue = {
                 "color": "blue",
                 "weight": 5,
-                "opacity": 0.65
+                "opacity": 1
             };
             var myStyleRed = {
                 "color": "red",
                 "weight": 5,
-                "opacity": 0.65
+                "opacity": 1
             };
 
             this.skiliftLayer = L.geoJSON(this.skilifts,
@@ -79,12 +77,16 @@ export default {
                 {
                     style: myStyleRed,
                     onEachFeature: (feature, layer) => {
-                        //layer.bindPopup(feature.properties.name);
                         layer.bindTooltip(feature.properties.name).openTooltip();
-                        layer.on('click', (ev) => {
-                            this.changeDetailSlope(feature.properties) // ev is an event object (MouseEvent in this case)
+                        //layer.bindPopup(feature.properties.name);
+                        if (feature.properties.name != 'Connector') {
 
-                        });
+                            layer.on('click', (ev) => {
+                                this.changeDetailSlope(feature.properties) // ev is an event object (MouseEvent in this case)
+
+                            })
+                        }
+                        ;
 
                     }
                 }).addTo(this.$refs.mapy.mapDiv);

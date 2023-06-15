@@ -12,7 +12,9 @@
     "leaflet": "^1.9.4",
     "leaflet-tilelayer-swiss": "^2.3.0",
     "vue": "^3.3.2",
-    "vue-router": "4.1.6"
+    "vue-router": "4.1.6",
+    "chart.js": "4.3.0",
+    "vue-chartjs": "5.2.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",

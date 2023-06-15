@@ -41,6 +41,15 @@ export default {
                     [48, 11],
                 ],
             });
+            let satSwiss = L.tileLayer("https:wmts.geo.admin.ch/1.0.0/ch.swisstopo.swissimage/default/current/3857/{z}/{x}/{y}.jpeg", {
+
+                maxZoom: 18,
+                attribution: '&copy; <a href="https://wmts.geo.admin.ch/EPSG/3857/1.0.0/WMTSCapabilities.xml?lang=de">OpenStreetMap</a> contributors',
+                bounds: [
+                    [45, 5],
+                    [48, 11],
+                ],
+            });
 
             // var satelliteLayer = L.tileLayer.swiss({
             //     layer: 'ch.swisstopo.swissimage',
@@ -54,9 +63,15 @@ export default {
                 layers: [osm]
             });
 
+            this.mapDiv.on('click', function (event) {
+                var latlng = event.latlng;
+                console.log(latlng);
+            })
+
             var baseMaps = {
                 "OpenStreetMap": osm,
                 "OpenStreetMap.HOT": osmSwiss,
+                "Sat": satSwiss
                 //"Satellite": satelliteLayer
             };
 
