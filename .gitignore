@@ -3,7 +3,6 @@
 /data
 Backend/geoweb/__pycache__
 Backend/swissgeo/__pycache__
-Backend
 __pycache__/
 *.pyc
 backend/swissgeo/migrations/__pycache__
