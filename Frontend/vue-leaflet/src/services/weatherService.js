@@ -6,7 +6,7 @@ let chartData = {
     labels: [],
     datasets: [{
         data: [8.4, 8.2, 8.5, 7.4, 7.4, 8.6, 10.7],
-        label: 'Filled',
+        label: 'Temperatures in ºC',
         backgroundColor: 'red',
         borderColor: 'red',
         fill: true,
