@@ -8,8 +8,8 @@ let chartData = {
         data: [8.4, 8.2, 8.5, 7.4, 7.4, 8.6, 10.7],
         label: 'Temperatures in ºC',
         backgroundColor: 'red',
-        borderColor: 'red',
-        fill: true,
+        //borderColor: 'red',
+        //fill: true,
     }],
 }
 

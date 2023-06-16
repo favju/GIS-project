@@ -1,28 +1,27 @@
 <template>
     <div class="container">
-        <Bar v-if="loaded" :data="chartData" :options="options" />
+        <Line v-if="loaded" :data="chartData" :options="options" />
     </div>
 </template>
 
 <script>
-import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+import { Line } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, PointElement, LineElement, CategoryScale, LinearScale } from 'chart.js'
 import weatherService from '../services/weatherService'
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, PointElement, LineElement)
 
 
 export default {
     name: 'BarChart',
-    components: { Bar },
+    components: { Line },
     data: () => ({
         loaded: false,
         chartData: null,
         options: {
             scales: {
                 y: {
-                    min: 0,
-                    max: 25
+                    beginAtZero: true
                 }
             }
         }
@@ -51,3 +50,4 @@ export default {
     }
 }
 </script>
+<style></style>

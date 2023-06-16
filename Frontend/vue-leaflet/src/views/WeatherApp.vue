@@ -21,6 +21,16 @@ export default {
             localStorage.setItem("lng", latlng.lng)
             location.reload()
         })
+
+        if (localStorage.getItem("lat") && localStorage.getItem("lng")) {
+            console.log("pose le marker")
+            L.marker([localStorage.getItem("lat"), localStorage.getItem("lng")]).addTo(this.$refs.mapy.mapDiv);
+            console.log("pose le marker")
+        }
+        else {
+            L.marker([46.319086, 7.072506]).addTo(this.$refs.mapy.mapDiv);
+
+        }
     }
 }
 
