@@ -10,7 +10,19 @@ let chartData = {
         backgroundColor: 'red',
         //borderColor: 'red',
         //fill: true,
-    }],
+    },
+    {
+        data: [8.4, 8.2, 8.5, 7.4, 7.4, 8.6, 10.7],
+        label: 'Precipitation in mm',
+        backgroundColor: 'blue',
+    },
+    {
+        data: [8.4, 8.2, 8.5, 7.4, 7.4, 8.6, 10.7],
+        label: 'Windspeed',
+        backgroundColor: 'green',
+    }
+
+    ],
 }
 
 export default {
@@ -20,12 +32,16 @@ export default {
             + latitude
             + '&longitude='
             + longitude
-            + '&hourly=temperature_2m';
+            + '&hourly=temperature_2m,precipitation,windspeed_10m';
 
         console.log(searchUrl)
 
         let result = await axios.get(searchUrl)
             .then((response) => chartData.datasets[0].data = response.data.hourly.temperature_2m)
+        result = await axios.get(searchUrl)
+            .then((response) => chartData.datasets[1].data = response.data.hourly.precipitation)
+        result = await axios.get(searchUrl)
+            .then((response) => chartData.datasets[2].data = response.data.hourly.windspeed_10m)
         result = await axios.get(searchUrl)
             .then((response) => chartData.labels = response.data.hourly.time)
         return result;

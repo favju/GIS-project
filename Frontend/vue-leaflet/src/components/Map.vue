@@ -108,8 +108,8 @@ export default {
 
 <style scoped>
 #mapContainer {
-    width: 60vw;
-    height: 50vh;
+    width: 45vw;
+    height: 60vh;
     margin: 20px;
 }
 </style>

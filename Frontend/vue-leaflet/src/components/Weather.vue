@@ -50,4 +50,8 @@ export default {
     }
 }
 </script>
-<style></style>
+<style>
+.container {
+    margin: 20px;
+}
+</style>
