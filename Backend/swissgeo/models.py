@@ -1,4 +1,3 @@
-from django.db import models
 from django.contrib.gis.db import models
 
 # Create your models here.from django.contrib.gis.db import models
@@ -10,7 +9,11 @@ class Skilift(models.Model):
     length = models.DecimalField(max_digits=10, decimal_places=4)
     maxseat = models.PositiveIntegerField()
     type = models.CharField(max_length=200)
-    geom = models.MultiLineStringField(srid=4326, null=True)
+    geom = models.MultiLineStringField()
+
+    @property
+    def transformed_geom(self):
+        return self.geom.transform(4326, clone=True)
 
     class Meta:
         db_table = "skilifts"
@@ -24,10 +27,15 @@ class Slope(models.Model):
     name = models.CharField(max_length=200)
     difficulty = models.CharField(max_length=200)
     length = models.DecimalField(max_digits=10, decimal_places=4)
-    geom = models.MultiLineStringField(srid=4326, null=True)
+    geom = models.MultiLineStringField()
+
+    @property
+    def transformed_geom(self):
+        return self.geom.transform(4326, clone=True)
 
     class Meta:
         db_table = "slopes"
 
     def __str__(self):
         return self.name
+        
