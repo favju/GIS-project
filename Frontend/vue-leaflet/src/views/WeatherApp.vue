@@ -1,8 +1,10 @@
 <template>
-    <h1>Weather</h1>
-    <div class="mapAndInfo">
-        <Map ref="mapy" />
-        <Weather />
+    <div class="vueContainer">
+        <h1>Weather</h1>
+        <div class="mapAndInfo">
+            <Map ref="mapy" />
+            <Weather />
+        </div>
     </div>
 </template>
 <script>

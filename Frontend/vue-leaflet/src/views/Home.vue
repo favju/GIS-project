@@ -1,10 +1,14 @@
 <template>
-    <h1>Explore the resort</h1>
-    <div class="mapAndInfo">
-        <Map ref="mapy" />
-        <DetailSkilift ref="detailSkilift" v-if="this.detail === 'skilift'" />
-        <DetailSlope ref="detailSlope" v-if="this.detail === 'slope'" />
-        <DetailSlope ref="detailRestaurant" v-if="this.detail === 'restaurant'" />
+    <div class="vueContainer">
+
+
+        <h1>Explore the resort</h1>
+        <div class="mapAndInfo">
+            <Map ref="mapy" />
+            <DetailSkilift ref="detailSkilift" v-if="this.detail === 'skilift'" />
+            <DetailSlope ref="detailSlope" v-if="this.detail === 'slope'" />
+            <DetailSlope ref="detailRestaurant" v-if="this.detail === 'restaurant'" />
+        </div>
     </div>
 </template>
 <script>
@@ -126,5 +130,14 @@ export default {
 <style>
 .mapAndInfo {
     display: flex;
+}
+
+h1 {
+    color: #559d84;
+    margin-left: 20px;
+}
+
+.vueContainer {
+    margin: 20px;
 }
 </style>

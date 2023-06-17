@@ -1,6 +1,6 @@
 
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">Villars-Gryon-Diableret</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,6 +55,15 @@ export default {
 }
 </script>
 <style>
+.navbar {
+    background-color: #3C6255;
+
+}
+
+.navbar * {
+    color: #EDE4E0 !important;
+}
+
 .navbar-brand {
     font-size: 34px;
     font-weight: bold;
