@@ -9,17 +9,20 @@ let chartData = {
         label: 'Temperatures in ºC',
         backgroundColor: 'red',
         //borderColor: 'red',
-        //fill: true,
     },
     {
         data: [8.4, 8.2, 8.5, 7.4, 7.4, 8.6, 10.7],
         label: 'Precipitation in mm',
         backgroundColor: 'blue',
+        //borderColor: 'blue',
+
     },
     {
         data: [8.4, 8.2, 8.5, 7.4, 7.4, 8.6, 10.7],
-        label: 'Windspeed',
+        label: 'Wind in km/h',
         backgroundColor: 'green',
+        //borderColor: 'green',
+
     }
 
     ],
