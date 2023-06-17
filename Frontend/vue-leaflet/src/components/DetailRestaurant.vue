@@ -28,12 +28,20 @@ export default {
     },
 };
 </script>
-<style>
+<style scoped>
 #detail {
     background-color: #909090;
     margin: 20px;
     width: 30vw;
     max-width: 30vw;
     max-height: 60vh;
+}
+
+#detail h5 {
+    margin-left: 4%;
+}
+
+#detail p {
+    margin-left: 14%;
 }
 </style>

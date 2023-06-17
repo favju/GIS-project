@@ -39,6 +39,14 @@ export default {
     max-height: 60vh;
 }
 
+#detail h5 {
+    margin-left: 4%;
+}
+
+#detail p {
+    margin-left: 14%;
+}
+
 img {
     max-height: 40%;
     object-fit: cover;
