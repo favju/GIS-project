@@ -54,4 +54,17 @@ export default {
     }
 }
 </script>
-<style></style>
+<style>
+.navbar-brand {
+    font-size: 34px;
+    font-weight: bold;
+}
+
+#navbarSupportedContent {
+    /* display: flex;
+    justify-content: end;
+    align-items: end;
+    
+    background-color: red; */
+}
+</style>

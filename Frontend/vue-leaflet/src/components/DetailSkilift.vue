@@ -1,13 +1,18 @@
 <template>
-    <div id="detail">
-        <h3>{{ this.skilift.name }}</h3>
-        <h5>Length</h5>
-        <p>{{ this.skilift.length }}</p>
-        <h5>Seats</h5>
-        <p>{{ this.skilift.maxseat }}</p>
-        <h5>Type</h5>
-        <p>{{ this.skilift.type }}</p>
+    <div id="detail" class="card">
+        <img class="card-img-top"
+            src="https://cdn.discordapp.com/attachments/1022573840120946708/1119599160421785600/39.png"
+            alt="Card image cap">
 
+        <div class="card-body">
+            <h3>{{ this.skilift.name }}</h3>
+            <h5>Length</h5>
+            <p>{{ this.skilift.length }}</p>
+            <h5>Seats</h5>
+            <p>{{ this.skilift.maxseat }}</p>
+            <h5>Type</h5>
+            <p>{{ this.skilift.type }}</p>
+        </div>
     </div>
 </template>
 <script>
@@ -24,8 +29,18 @@ export default {
     },
 };
 </script>
-<style>
+<style scoped>
 #detail {
     background-color: #909090;
+    margin: 20px;
+    width: 30vw;
+    max-width: 30vw;
+    max-height: 60vh;
+}
+
+img {
+    max-height: 40%;
+    object-fit: cover;
+
 }
 </style>

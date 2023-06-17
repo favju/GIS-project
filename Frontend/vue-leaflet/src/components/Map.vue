@@ -111,5 +111,6 @@ export default {
     width: 45vw;
     height: 60vh;
     margin: 20px;
+    border-radius: 4px;
 }
 </style>
