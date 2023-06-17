@@ -57,7 +57,7 @@ export default {
 <style>
 .navbar {
     background-color: #3C6255;
-
+    padding-left: 2vw;
 }
 
 .navbar * {
@@ -69,11 +69,5 @@ export default {
     font-weight: bold;
 }
 
-#navbarSupportedContent {
-    /* display: flex;
-    justify-content: end;
-    align-items: end;
-    
-    background-color: red; */
-}
+#navbarSupportedContent {}
 </style>
