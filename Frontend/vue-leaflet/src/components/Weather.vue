@@ -48,6 +48,14 @@ export default {
         localStorage.removeItem("lat")
         localStorage.removeItem("lng")
         console.log(weatherService.chartData)
+        console.log(weatherService.current_weather)
+        this.$parent.marker.bindPopup(
+            "Temperature " +
+            String(weatherService.current_weather.current_weather.temperature) +
+            "ºC | Wind " +
+            String(weatherService.current_weather.current_weather.windspeed) +
+            "km/h"
+        ).openPopup();
         this.loaded = true
     }
 }

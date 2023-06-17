@@ -10,11 +10,18 @@
 <script>
 import Map from '../components/Map.vue'
 import Weather from '../components/Weather.vue'
+import weatherService from '../services/weatherService.js'
+
 export default {
     name: "WeatherApp",
     components: {
         Map,
         Weather
+    },
+    data() {
+        return {
+            marker: ''
+        }
     },
     mounted() {
         this.$refs.mapy.mapDiv.on('click', function (event) {
@@ -26,13 +33,14 @@ export default {
 
         if (localStorage.getItem("lat") && localStorage.getItem("lng")) {
             console.log("pose le marker")
-            L.marker([localStorage.getItem("lat"), localStorage.getItem("lng")]).addTo(this.$refs.mapy.mapDiv);
+            this.marker = L.marker([localStorage.getItem("lat"), localStorage.getItem("lng")]).addTo(this.$refs.mapy.mapDiv);
             console.log("pose le marker")
         }
         else {
-            L.marker([46.319086, 7.072506]).addTo(this.$refs.mapy.mapDiv);
+            this.marker = L.marker([46.319086, 7.072506],).addTo(this.$refs.mapy.mapDiv);
 
         }
+        console.log(weatherService.current_weather)
     }
 }
 
