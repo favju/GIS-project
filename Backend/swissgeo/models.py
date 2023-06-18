@@ -1,4 +1,5 @@
 from django.contrib.gis.db import models
+from django.contrib.gis.db.models import Union
 
 # Create your models here.from django.contrib.gis.db import models
 
@@ -35,6 +36,22 @@ class Slope(models.Model):
 
     class Meta:
         db_table = "slopes"
+
+    def __str__(self):
+        return self.name
+    
+class Restaurant(models.Model):
+    id = models.PositiveSmallIntegerField(primary_key=True)
+    name = models.CharField(max_length=200)
+    height = models.IntegerField()
+    geom = models.MultiPolygonField()
+
+    @property
+    def transformed_geom(self):
+        return self.geom.transform(4326, clone=True)
+    
+    class Meta:
+        db_table = "restaurants"
 
     def __str__(self):
         return self.name
