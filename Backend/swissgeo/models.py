@@ -10,6 +10,8 @@ class Skilift(models.Model):
     length = models.DecimalField(max_digits=10, decimal_places=4)
     maxseat = models.PositiveIntegerField()
     type = models.CharField(max_length=200)
+    open = models.BooleanField()
+    image = models.CharField(max_length=200)
     geom = models.MultiLineStringField()
 
     @property
@@ -44,6 +46,8 @@ class Restaurant(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
     name = models.CharField(max_length=200)
     height = models.IntegerField()
+    open = models.BooleanField()
+    image = models.CharField(max_length=250)
     geom = models.MultiPolygonField()
 
     @property
