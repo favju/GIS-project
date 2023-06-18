@@ -40,14 +40,14 @@ export default {
 
     computed: {
         slopes() {
-            return slopeService.slopes.value
+            return slopeService.slopesSection.value
         }
     },
     async mounted() {
 
 
-        await slopeService.getSlopes();
-        this.$refs.mapy.mapDiv.on('click', async (event) => {
+        await slopeService.getSlopesSections();
+        this.$refs.mapy.mapDiv.on('click', (event) => {
             // Remove old marker if it exists
             if (this.marker && this.closestMarker) {
                 this.$refs.mapy.mapDiv.removeLayer(this.marker)
