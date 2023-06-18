@@ -19,6 +19,9 @@ import skiliftService from '../services/skiliftService.js'
 import slopeService from '../services/slopeService.js'
 import * as turf from '@turf/turf'
 
+
+import axios from "axios"
+
 export default {
     name: "PathFinder",
     components: {
@@ -29,6 +32,7 @@ export default {
             detail: "",
             slopeLayer: null,
             latlng: null,
+            elevation: null,
             marker: null,
             closestMarker: null,
         }
@@ -43,7 +47,7 @@ export default {
 
 
         await slopeService.getSlopes();
-        this.$refs.mapy.mapDiv.on('click', (event) => {
+        this.$refs.mapy.mapDiv.on('click', async (event) => {
             // Remove old marker if it exists
             if (this.marker && this.closestMarker) {
                 this.$refs.mapy.mapDiv.removeLayer(this.marker)
@@ -52,78 +56,43 @@ export default {
             }
             // Get coordinates of click and add marker to map
             this.latlng = event.latlng;
+            let url = 'https://api.open-meteo.com/v1/elevation?latitude='
+                + this.latlng.lat
+                + '&longitude='
+                + this.latlng.lng
+            await axios.get(url)
+                .then((response) => this.elevation = response.data.elevation[0])
+            console.log(this.elevation)
             //console.log(this.latlng)
             this.marker = L.marker(this.latlng).addTo(this.$refs.mapy.mapDiv);
 
             // Find neareast point on line?
             // returns all the point at the intersections!
             let slopesCopy = slopeService.slopes.value
-            //console.log(slopesCopy)
-
-            // Find neareast point on line?
-            // returns all the point at the intersections!
-            // slopesCopy.features.forEach(feature => {
-            //     var snapped = turf.nearestPointOnLine(feature, [this.latlng.lat, this.latlng.lng]);
-            //     //console.log(snapped)
-            //     L.geoJSON(snapped).addTo(this.$refs.mapy.mapDiv);
-            // });
             var closest = 10000000
             var bestpoint = null
 
-            // one to many for loop
             slopesCopy.features.forEach(feature => {
-                //console.log(feature)
-                //console.log("level 1")
                 feature.geometry.coordinates.forEach(multiligne => {
-                    //console.log("level 2")
                     multiligne.forEach(point => {
-                        //console.log("level 3")
+                        //console.log(point)
                         var distance = turf.distance([this.latlng.lng, this.latlng.lat], point);
                         if (distance < closest) {
-                            closest = distance
-                            bestpoint = point
+                            if (point[2] < this.elevation) {
+                                closest = distance
+                                bestpoint = point
+                            }
+
                         }
                     })
-                    //console.log(closest)
                 })
             });
 
             this.closestMarker = L.marker([bestpoint[1], bestpoint[0]]).addTo(this.$refs.mapy.mapDiv);
+            console.log(this.elevation)
         })
 
         this.testAddLayer()
-        // let slopesCopy = slopeService.slopes.value
-
-        // // Filter to keep all the sections of the same slope
-        // slopesCopy = slopesCopy.features.filter((f) => f.properties.name == 'Grand chamossaire')
-
-        // // Combine the section of the slope
-        // var combined = turf.combine(slopesCopy); // Does not work
-        // //console.log(combined)
-
-        // L.geoJSON(combined, {
-        //     onEachFeature: (feature, layer) => {
-        //         layer.bindTooltip(feature.properties.name).openTooltip();
-        //     }
-        // }).addTo(this.$refs.mapy.mapDiv);
-
-
-
-        // var center = turf.center(slopeService.slopes.value);
-        // console.log(center)
-        // var centerOfMass = turf.centerOfMass(slopeService.slopes.value);
-        // console.log(centerOfMass)
-
-        // var enveloped = turf.envelope(slopeService.slopes.value);
-        // console.log(enveloped)
-        // //L.geoJSON(enveloped).addTo(this.$refs.mapy.mapDiv);
-        // //enveloped.feature.addTo(this.$refs.mapy.mapDiv);
-        // var length = turf.length(slopeService.slopes.value);
-        // console.log("Total length of the slopes in km : " + length)
-
-        // var hull = turf.convex(slopeService.slopes.value);
-        // L.geoJSON(hull).addTo(this.$refs.mapy.mapDiv);
-        // console.log("Area in m2 of the polygon that all slopes fit in" + turf.area(hull))
 
     },
     methods: {
