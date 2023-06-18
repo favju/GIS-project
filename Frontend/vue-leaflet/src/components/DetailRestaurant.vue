@@ -5,12 +5,9 @@
             alt="Card image cap">
         <div class="card-body">
             <h3>{{ this.restaurant.name }}</h3>
-            <h5>Length</h5>
-            <p>{{ this.restaurant.length }}</p>
-            <h5>Seats</h5>
-            <p>{{ this.restaurant.maxseat }}</p>
-            <h5>Type</h5>
-            <p>{{ this.restaurant.type }}</p>
+            <h5>Height</h5>
+            <p>{{ this.restaurant.height }}</p>
+
         </div>
     </div>
 </template>
@@ -19,7 +16,7 @@ export default {
     name: "DetailRestaurant",
     data() {
         return {
-            restaurant: { "name": "Rasse-Chaux Ronde", "length": "2131.6483", "maxseat": 8, "type": "Télésiège" }
+            restaurant: { "name": "default", "height": "default" }
         };
     },
     methods: {
@@ -30,7 +27,8 @@ export default {
 </script>
 <style scoped>
 #detail {
-    background-color: #909090;
+    background-color: #3C6255;
+    color: #EDE4E0;
     margin: 20px;
     width: 30vw;
     max-width: 30vw;
@@ -44,6 +42,13 @@ export default {
 #detail p {
     margin-left: 14%;
 }
+
+img {
+    max-height: 40%;
+    object-fit: cover;
+
+}
+
 
 @media only screen and (max-width: 992px) {
     #detail {

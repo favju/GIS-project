@@ -8,7 +8,7 @@
             <Map ref="mapy" />
             <DetailSkilift ref="detailSkilift" v-if="this.detail === 'skilift'" />
             <DetailSlope ref="detailSlope" v-if="this.detail === 'slope'" />
-            <DetailSlope ref="detailRestaurant" v-if="this.detail === 'restaurant'" />
+            <DetailRestaurant ref="detailRestaurant" v-if="this.detail === 'restaurant'" />
         </div>
     </div>
 </template>
@@ -70,6 +70,11 @@ export default {
                 "weight": 5,
                 "opacity": 1
             };
+            var myStyleYellow = {
+                "color": "yellow",
+                "weight": 2,
+                "opacity": 1
+            };
 
             this.skiliftLayer = L.geoJSON(this.skilifts,
                 {
@@ -108,13 +113,13 @@ export default {
 
             this.restaurantLayer = L.geoJSON(this.restaurants,
                 {
-                    style: myStyleBlue,
+                    style: myStyleYellow,
                     onEachFeature: (feature, layer) => {
                         //layer.bindPopup(feature.properties.name);
                         layer.bindTooltip(feature.properties.name).openTooltip();
                         layer.on('click', (ev) => {
                             this.changeDetailRestaurant(feature.properties) // ev is an event object (MouseEvent in this case)
-
+                            console.log(feature)
                         });
                     },
 
@@ -148,7 +153,7 @@ export default {
 
         changeDetailRestaurant(content) {
             this.detail = "restaurant"
-            this.$refs.detailRestaurant.restaurent = content
+            this.$refs.detailRestaurant.restaurant = content
         },
 
         testMakeTransparent() {
