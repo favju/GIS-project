@@ -1,8 +1,6 @@
 <template>
     <div id="detail" class="card">
-        <img class="card-img-top"
-            src="https://cdn.discordapp.com/attachments/1022573840120946708/1119599160421785600/39.png"
-            alt="Card image cap">
+        <img class="card-img-top" :src="skilift.image" alt="Card image cap">
 
         <div class="card-body">
             <h3>{{ this.skilift.name }}</h3>
@@ -12,6 +10,12 @@
             <p>{{ this.skilift.maxseat }}</p>
             <h5>Type</h5>
             <p>{{ this.skilift.type }}</p>
+            <div v-if="skilift.open">
+                <h5 style="color: rgb(8, 235, 8);">Open</h5>
+            </div>
+            <div v-else>
+                <h5 style="color: red;">Closed</h5>
+            </div>
         </div>
     </div>
 </template>

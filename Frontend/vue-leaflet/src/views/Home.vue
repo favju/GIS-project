@@ -9,6 +9,10 @@
             <DetailSkilift ref="detailSkilift" v-show="this.detail === 'skilift'" />
             <DetailSlope ref="detailSlope" v-show="this.detail === 'slope'" />
             <DetailRestaurant ref="detailRestaurant" v-show="this.detail === 'restaurant'" />
+            <div id="loader" v-if="!loaded">
+                <h2>Loading</h2>
+                <img src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif" />
+            </div>
         </div>
     </div>
 </template>
@@ -36,14 +40,22 @@ export default {
             detail: "",
             slopeLayer: null,
             skiliftLayer: null,
+            loaded: false
         }
     },
     async mounted() {
         //L.geoJSON(this.skilift.features).addTo(this.$refs.mapy.mapDiv);
-        await slopeService.getSlopes();
-        await skiliftService.getSkilifts();
-        await restaurantService.getRestaurants();
-        this.testAddLayer();
+        //await Promise.all([slopeService.getSlopes(), skiliftService.getSkilifts(), restaurantService.getRestaurants()]);
+        await restaurantService.getRestaurants()
+        this.addRestaurant()
+
+        await skiliftService.getSkilifts()
+        this.addSkilifts()
+
+        await slopeService.getSlopes()
+        this.addSlopes()
+
+        this.loaded = true
     },
 
     computed: {
@@ -59,23 +71,35 @@ export default {
     },
 
     methods: {
-        testAddLayer() {
-            var myStyleBlue = {
-                "color": "blue",
-                "weight": 5,
-                "opacity": 1
-            };
-            var myStyleRed = {
-                "color": "red",
-                "weight": 5,
-                "opacity": 1
-            };
+        addRestaurant() {
             var myStyleYellow = {
                 "color": "yellow",
                 "weight": 2,
                 "opacity": 1
             };
 
+            this.restaurantLayer = L.geoJSON(this.restaurants,
+                {
+                    style: myStyleYellow,
+                    onEachFeature: (feature, layer) => {
+                        //layer.bindPopup(feature.properties.name);
+                        layer.bindTooltip(feature.properties.name).openTooltip();
+                        layer.on('click', (ev) => {
+                            this.changeDetailRestaurant(feature.properties) // ev is an event object (MouseEvent in this case)
+                            console.log(feature)
+                        });
+                    },
+
+                }).addTo(this.$refs.mapy.mapDiv);
+
+            this.$refs.mapy.layerControl.addOverlay(this.restaurantLayer, "Restaurants")
+        },
+        addSkilifts() {
+            var myStyleBlue = {
+                "color": "blue",
+                "weight": 5,
+                "opacity": 1
+            };
             this.skiliftLayer = L.geoJSON(this.skilifts,
                 {
                     style: myStyleBlue,
@@ -89,6 +113,16 @@ export default {
                     },
 
                 }).addTo(this.$refs.mapy.mapDiv);
+
+            this.$refs.mapy.layerControl.addOverlay(this.skiliftLayer, "Skilifts")
+        },
+        addSlopes() {
+
+            var myStyleRed = {
+                "color": "red",
+                "weight": 5,
+                "opacity": 1
+            };
 
             this.slopeLayer = L.geoJSON(this.slopes,
                 {
@@ -107,27 +141,8 @@ export default {
 
                     }
                 }).addTo(this.$refs.mapy.mapDiv);
-            //}).addTo(this.$refs.mapy.mapDiv);
-            //this.slopeLayer.addTo(this.$refs.mapy.mapDiv);
-            //let layerControl = L.control.layers(this.slopeLayer).addTo(this.$refs.mapy.mapDiv);
 
-            this.restaurantLayer = L.geoJSON(this.restaurants,
-                {
-                    style: myStyleYellow,
-                    onEachFeature: (feature, layer) => {
-                        //layer.bindPopup(feature.properties.name);
-                        layer.bindTooltip(feature.properties.name).openTooltip();
-                        layer.on('click', (ev) => {
-                            this.changeDetailRestaurant(feature.properties) // ev is an event object (MouseEvent in this case)
-                            console.log(feature)
-                        });
-                    },
-
-                }).addTo(this.$refs.mapy.mapDiv);
-
-            this.$refs.mapy.layerControl.addOverlay(this.skiliftLayer, "Skilifts")
             this.$refs.mapy.layerControl.addOverlay(this.slopeLayer, "Slopes")
-            this.$refs.mapy.layerControl.addOverlay(this.restaurantLayer, "Restaurants")
 
 
             // // TEST
@@ -185,6 +200,24 @@ p {
 
 .vueContainer {
     margin: 20px;
+}
+
+#loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+#loader * {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
 }
 
 

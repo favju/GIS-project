@@ -4,20 +4,22 @@
         <p>Click on the map and it will show you the nearest point on a slope</p>
         <div class="mapAndInfo">
             <Map ref="mapy" />
-            <div>
-                This the way
+            <div id="loader" v-if="!loaded">
+                <h2>Loading</h2>
+                <img src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif" />
             </div>
         </div>
     </div>
 </template>
 <script>
 import Map from '../components/Map.vue'
-import DetailSkilift from '../components/DetailSkilift.vue'
-import DetailSlope from '../components/DetailSlope.vue'
-import DetailRestaurant from '../components/DetailRestaurant.vue'
-import skiliftService from '../services/skiliftService.js'
 import slopeService from '../services/slopeService.js'
+import restaurantService from '../services/restaurantService.js'
+
 import * as turf from '@turf/turf'
+
+
+import axios from "axios"
 
 export default {
     name: "PathFinder",
@@ -29,108 +31,118 @@ export default {
             detail: "",
             slopeLayer: null,
             latlng: null,
+            elevation: null,
             marker: null,
             closestMarker: null,
+            closestRestaurant: null,
+            restaurantsCenter: [],
+            loaded: false
         }
     },
 
     computed: {
+        restaurants() {
+            return restaurantService.restaurants.value
+        },
         slopes() {
             return slopeService.slopesSection.value
         }
     },
     async mounted() {
 
-
+        // Fetches slopes and restaurant data from the django API
         await slopeService.getSlopesSections();
-        this.$refs.mapy.mapDiv.on('click', (event) => {
+        await restaurantService.getRestaurants();
+
+        // Prepares central point and elevation for all restaurants
+        this.restaurants.features.forEach(feature => {
+            let center = turf.center(feature)
+            // console.log(center)
+            // console.log(feature.properties.height)
+            this.restaurantsCenter.push({ 'center': center, 'elevation': feature.properties.height })
+        })
+
+        console.log(this.restaurantsCenter)
+
+        // Add "find closest" fonctionality on map click
+        this.$refs.mapy.mapDiv.on('click', async (event) => {
             // Remove old marker if it exists
-            if (this.marker && this.closestMarker) {
+            if (this.marker && this.closestMarker && this.closestRestaurant) {
                 this.$refs.mapy.mapDiv.removeLayer(this.marker)
                 this.$refs.mapy.mapDiv.removeLayer(this.closestMarker)
-
+                this.$refs.mapy.mapDiv.removeLayer(this.closestRestaurant)
             }
+
             // Get coordinates of click and add marker to map
             this.latlng = event.latlng;
-            //console.log(this.latlng)
+
+            // Fetch elevation for coordinates of click
+            let url = 'https://api.open-meteo.com/v1/elevation?latitude='
+                + this.latlng.lat
+                + '&longitude='
+                + this.latlng.lng
+            await axios.get(url)
+                .then((response) => this.elevation = response.data.elevation[0])
+
+            // Place marker on clicked point
             this.marker = L.marker(this.latlng).addTo(this.$refs.mapy.mapDiv);
 
-            // Find neareast point on line?
-            // returns all the point at the intersections!
+            // Find neareast point on slope
             let slopesCopy = slopeService.slopesSection.value
-            //console.log(slopesCopy)
-
-            // Find neareast point on line?
-            // returns all the point at the intersections!
-            // slopesCopy.features.forEach(feature => {
-            //     var snapped = turf.nearestPointOnLine(feature, [this.latlng.lat, this.latlng.lng]);
-            //     //console.log(snapped)
-            //     L.geoJSON(snapped).addTo(this.$refs.mapy.mapDiv);
-            // });
             var closest = 10000000
             var bestpoint = null
 
-            // one to many for loop
             slopesCopy.features.forEach(feature => {
-                //console.log(feature)
-                //console.log("level 1")
                 feature.geometry.coordinates.forEach(multiligne => {
-                    //console.log("level 2")
                     multiligne.forEach(point => {
-                        //console.log("level 3")
+                        //console.log(point)
                         var distance = turf.distance([this.latlng.lng, this.latlng.lat], point);
                         if (distance < closest) {
-                            closest = distance
-                            bestpoint = point
+                            if (point[2] < this.elevation) {
+                                closest = distance
+                                bestpoint = point
+                            }
+
                         }
                     })
-                    //console.log(closest)
                 })
             });
 
-            this.closestMarker = L.marker([bestpoint[1], bestpoint[0]]).addTo(this.$refs.mapy.mapDiv);
+            this.closestMarker = L.marker([bestpoint[1], bestpoint[0]]).addTo(this.$refs.mapy.mapDiv)
+                .bindPopup('Closest slope')
+            // .openPopup();
+            console.log(this.elevation)
+
+            // Find nearest restaurant
+            var closest = 10000000
+            var bestpoint = null
+            this.restaurantsCenter.forEach(restaurant => {
+                var distance = turf.distance([this.latlng.lng, this.latlng.lat], restaurant.center);
+                console.log(distance)
+                if (distance < closest) {
+                    if (restaurant.elevation < this.elevation) {
+                        closest = distance
+                        bestpoint = restaurant.center.geometry.coordinates
+                        console.log(bestpoint)
+                    }
+
+                }
+            })
+            this.closestRestaurant = L.marker([bestpoint[1], bestpoint[0]]).addTo(this.$refs.mapy.mapDiv)
+                .bindPopup('Closest restaurant')
+            // .openPopup();
+            console.log(this.elevation)
         })
 
         this.testAddLayer()
-        // let slopesCopy = slopeService.slopes.value
-
-        // // Filter to keep all the sections of the same slope
-        // slopesCopy = slopesCopy.features.filter((f) => f.properties.name == 'Grand chamossaire')
-
-        // // Combine the section of the slope
-        // var combined = turf.combine(slopesCopy); // Does not work
-        // //console.log(combined)
-
-        // L.geoJSON(combined, {
-        //     onEachFeature: (feature, layer) => {
-        //         layer.bindTooltip(feature.properties.name).openTooltip();
-        //     }
-        // }).addTo(this.$refs.mapy.mapDiv);
-
-
-
-        // var center = turf.center(slopeService.slopes.value);
-        // console.log(center)
-        // var centerOfMass = turf.centerOfMass(slopeService.slopes.value);
-        // console.log(centerOfMass)
-
-        // var enveloped = turf.envelope(slopeService.slopes.value);
-        // console.log(enveloped)
-        // //L.geoJSON(enveloped).addTo(this.$refs.mapy.mapDiv);
-        // //enveloped.feature.addTo(this.$refs.mapy.mapDiv);
-        // var length = turf.length(slopeService.slopes.value);
-        // console.log("Total length of the slopes in km : " + length)
-
-        // var hull = turf.convex(slopeService.slopes.value);
-        // L.geoJSON(hull).addTo(this.$refs.mapy.mapDiv);
-        // console.log("Area in m2 of the polygon that all slopes fit in" + turf.area(hull))
+        this.loaded = true
 
     },
     methods: {
         testAddLayer() {
-            var myStyleBlue = {
-                "color": "blue",
-                "weight": 5,
+            var myStyleYellow = {
+                "color": "yellow",
+                "weight": 2,
                 "opacity": 1
             };
             var myStyleRed = {
@@ -144,13 +156,25 @@ export default {
                     style: myStyleRed,
                     onEachFeature: (feature, layer) => {
                         layer.bindTooltip(feature.properties.name).openTooltip();
-                        //layer.bindPopup(feature.properties.name);
-
-
                     }
+                }).addTo(this.$refs.mapy.mapDiv);
+            this.restaurantLayer = L.geoJSON(this.restaurants,
+                {
+                    style: myStyleYellow,
+                    onEachFeature: (feature, layer) => {
+                        //layer.bindPopup(feature.properties.name);
+                        layer.bindTooltip(feature.properties.name).openTooltip();
+                        layer.on('click', (ev) => {
+                            this.changeDetailRestaurant(feature.properties) // ev is an event object (MouseEvent in this case)
+                            console.log(feature)
+                        });
+                    },
+
                 }).addTo(this.$refs.mapy.mapDiv);
 
             this.$refs.mapy.layerControl.addOverlay(this.slopeLayer, "Slopes")
+            this.$refs.mapy.layerControl.addOverlay(this.restaurantLayer, "Restaurants")
+
 
         },
 
@@ -178,5 +202,23 @@ p {
     color: #90e8c9;
     margin-left: 20px;
     margin-bottom: 0px;
+}
+
+#loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+#loader * {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
 }
 </style>
