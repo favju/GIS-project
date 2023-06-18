@@ -52,4 +52,14 @@ img {
     object-fit: cover;
 
 }
+
+
+@media only screen and (max-width: 992px) {
+    #detail {
+        /* max-width: 80vw;
+        max-height: auto; */
+        min-width: 80vw;
+        min-height: auto;
+    }
+}
 </style>

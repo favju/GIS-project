@@ -60,8 +60,17 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 .container {
     margin: 20px;
+}
+
+@media only screen and (max-width: 992px) {
+    .container {
+        /* max-width: 80vw;
+        max-height: auto; */
+        min-width: 80vw;
+        min-height: 600px;
+    }
 }
 </style>

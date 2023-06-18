@@ -3,6 +3,7 @@
 
 
         <h1>Explore the resort</h1>
+        <p>Click on a slope, a skilift or a restaurant to learn more about it</p>
         <div class="mapAndInfo">
             <Map ref="mapy" />
             <DetailSkilift ref="detailSkilift" v-if="this.detail === 'skilift'" />
@@ -127,17 +128,33 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .mapAndInfo {
     display: flex;
 }
+
+
 
 h1 {
     color: #559d84;
     margin-left: 20px;
 }
 
+p {
+    color: #90e8c9;
+    margin-left: 20px;
+    margin-bottom: 0px;
+}
+
 .vueContainer {
     margin: 20px;
+}
+
+
+@media only screen and (max-width: 992px) {
+    .mapAndInfo {
+        display: flex;
+        flex-direction: column;
+    }
 }
 </style>

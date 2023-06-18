@@ -79,4 +79,18 @@ export default {
     align-self: flex-end;
     justify-content: flex-end;
 }
+
+
+@media only screen and (max-width: 992px) {
+    #footer {
+        position: relative;
+        min-width: 94vw;
+        max-width: 94vw;
+        /* width: 90%; */
+        /* height: 5vh; */
+        /* Footer height */
+
+
+    }
+}
 </style>

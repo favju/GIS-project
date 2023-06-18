@@ -113,4 +113,13 @@ export default {
     margin: 20px;
     border-radius: 4px;
 }
+
+@media only screen and (max-width: 992px) {
+    #mapContainer {
+        /* max-width: 80vw;
+        max-height: auto; */
+        min-width: 80vw;
+        min-height: auto;
+    }
+}
 </style>

@@ -40,4 +40,13 @@ export default {
 #detail p {
     margin-left: 14%;
 }
+
+@media only screen and (max-width: 992px) {
+    #detail {
+        /* max-width: 80vw;
+        max-height: auto; */
+        min-width: 80vw;
+        min-height: auto;
+    }
+}
 </style>

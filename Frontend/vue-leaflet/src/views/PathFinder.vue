@@ -1,6 +1,7 @@
 <template>
     <div class="vueContainer">
         <h1>Find a path brother</h1>
+        <p>Click on the map and it will show you the nearest point on a slope</p>
         <div class="mapAndInfo">
             <Map ref="mapy" />
             <div>
@@ -159,8 +160,23 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .mapAndInfo {
     display: flex;
+}
+
+.vueContainer {
+    margin: 20px;
+}
+
+h1 {
+    color: #559d84;
+    margin-left: 20px;
+}
+
+p {
+    color: #90e8c9;
+    margin-left: 20px;
+    margin-bottom: 0px;
 }
 </style>
