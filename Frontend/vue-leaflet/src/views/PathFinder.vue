@@ -4,8 +4,9 @@
         <p>Click on the map and it will show you the nearest point on a slope</p>
         <div class="mapAndInfo">
             <Map ref="mapy" />
-            <div>
-                This the way
+            <div id="loader" v-if="!loaded">
+                <h2>Loading</h2>
+                <img src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif" />
             </div>
         </div>
     </div>
@@ -35,6 +36,7 @@ export default {
             closestMarker: null,
             closestRestaurant: null,
             restaurantsCenter: [],
+            loaded: false
         }
     },
 
@@ -133,6 +135,7 @@ export default {
         })
 
         this.testAddLayer()
+        this.loaded = true
 
     },
     methods: {
@@ -199,5 +202,23 @@ p {
     color: #90e8c9;
     margin-left: 20px;
     margin-bottom: 0px;
+}
+
+#loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+#loader * {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
 }
 </style>

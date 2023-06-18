@@ -11,7 +11,7 @@
             <h5>Type</h5>
             <p>{{ this.skilift.type }}</p>
             <div v-if="skilift.open">
-                <h5 style="color: green;">Open</h5>
+                <h5 style="color: rgb(8, 235, 8);">Open</h5>
             </div>
             <div v-else>
                 <h5 style="color: red;">Closed</h5>

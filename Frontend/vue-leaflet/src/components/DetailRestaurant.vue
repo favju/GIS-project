@@ -6,7 +6,7 @@
             <h5>Height</h5>
             <p>{{ this.restaurant.height }}</p>
             <div v-if="restaurant.open">
-                <h5 style="color: green;">Open</h5>
+                <h5 style="color: rgb(8, 235, 8);">Open</h5>
             </div>
             <div v-else>
                 <h5 style="color: red;">Closed</h5>
