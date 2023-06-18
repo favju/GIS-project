@@ -108,8 +108,18 @@ export default {
 
 <style scoped>
 #mapContainer {
-    width: 60vw;
-    height: 50vh;
+    width: 45vw;
+    height: 60vh;
     margin: 20px;
+    border-radius: 4px;
+}
+
+@media only screen and (max-width: 992px) {
+    #mapContainer {
+        /* max-width: 80vw;
+        max-height: auto; */
+        min-width: 80vw;
+        min-height: auto;
+    }
 }
 </style>

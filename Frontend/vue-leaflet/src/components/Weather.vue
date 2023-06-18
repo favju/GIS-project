@@ -1,28 +1,29 @@
 <template>
     <div class="container">
-        <Bar v-if="loaded" :data="chartData" :options="options" />
+        <Line v-if="loaded" :data="chartData" :options="options" />
     </div>
 </template>
 
 <script>
-import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+import { Line } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, PointElement, LineElement, CategoryScale, LinearScale } from 'chart.js'
 import weatherService from '../services/weatherService'
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, PointElement, LineElement)
 
 
 export default {
     name: 'BarChart',
-    components: { Bar },
+    components: { Line },
     data: () => ({
         loaded: false,
         chartData: null,
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 y: {
-                    min: 0,
-                    max: 25
+                    beginAtZero: true
                 }
             }
         }
@@ -47,7 +48,29 @@ export default {
         localStorage.removeItem("lat")
         localStorage.removeItem("lng")
         console.log(weatherService.chartData)
+        console.log(weatherService.current_weather)
+        this.$parent.marker.bindPopup(
+            "Temperature " +
+            String(weatherService.current_weather.current_weather.temperature) +
+            "ºC | Wind " +
+            String(weatherService.current_weather.current_weather.windspeed) +
+            "km/h"
+        ).openPopup();
         this.loaded = true
     }
 }
 </script>
+<style scoped>
+.container {
+    margin: 20px;
+}
+
+@media only screen and (max-width: 992px) {
+    .container {
+        /* max-width: 80vw;
+        max-height: auto; */
+        min-width: 80vw;
+        min-height: 600px;
+    }
+}
+</style>

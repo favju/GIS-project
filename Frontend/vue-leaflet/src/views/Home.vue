@@ -1,10 +1,15 @@
 <template>
-    <h1>Explore the resort</h1>
-    <div class="mapAndInfo">
-        <Map ref="mapy" />
-        <DetailSkilift ref="detailSkilift" v-if="this.detail === 'skilift'" />
-        <DetailSlope ref="detailSlope" v-if="this.detail === 'slope'" />
-        <DetailSlope ref="detailRestaurant" v-if="this.detail === 'restaurant'" />
+    <div class="vueContainer">
+
+
+        <h1>Explore the resort</h1>
+        <p>Click on a slope, a skilift or a restaurant to learn more about it</p>
+        <div class="mapAndInfo">
+            <Map ref="mapy" />
+            <DetailSkilift ref="detailSkilift" v-if="this.detail === 'skilift'" />
+            <DetailSlope ref="detailSlope" v-if="this.detail === 'slope'" />
+            <DetailSlope ref="detailRestaurant" v-if="this.detail === 'restaurant'" />
+        </div>
     </div>
 </template>
 <script>
@@ -14,6 +19,8 @@ import DetailSlope from '../components/DetailSlope.vue'
 import DetailRestaurant from '../components/DetailRestaurant.vue'
 import skiliftService from '../services/skiliftService.js'
 import slopeService from '../services/slopeService.js'
+
+import * as turf from '@turf/turf'
 
 export default {
     name: "Home",
@@ -97,6 +104,16 @@ export default {
             this.$refs.mapy.layerControl.addOverlay(this.skiliftLayer, "Skilifts")
             this.$refs.mapy.layerControl.addOverlay(this.slopeLayer, "Slopes")
 
+
+            // // TEST
+            // let lifts = skiliftService.skilifts.value
+
+            // // Filter to keep all the sections of the same slope
+
+            // let rasse = lifts.features.filter((f) => f.properties.name == 'Rasse-Chaux Ronde')
+            // console.log(rasse)
+            // console.log(turf.length(rasse[0]))
+
         },
 
         changeDetailSkilift(content) {
@@ -123,8 +140,33 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .mapAndInfo {
     display: flex;
+}
+
+
+
+h1 {
+    color: #559d84;
+    margin-left: 20px;
+}
+
+p {
+    color: #90e8c9;
+    margin-left: 20px;
+    margin-bottom: 0px;
+}
+
+.vueContainer {
+    margin: 20px;
+}
+
+
+@media only screen and (max-width: 992px) {
+    .mapAndInfo {
+        display: flex;
+        flex-direction: column;
+    }
 }
 </style>
