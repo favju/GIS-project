@@ -7,6 +7,6 @@ export default {
     slopes,
     getSlopes() {
         console.log("about to call api for slopes")
-        return api.get(`slopes/`).then((response) => slopes.value = response.data)
+        return api.get(`unionslopes/`).then((response) => slopes.value = response.data)
     }
 }
