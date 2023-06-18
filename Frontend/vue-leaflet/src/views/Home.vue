@@ -20,6 +20,8 @@ import DetailRestaurant from '../components/DetailRestaurant.vue'
 import skiliftService from '../services/skiliftService.js'
 import slopeService from '../services/slopeService.js'
 
+import * as turf from '@turf/turf'
+
 export default {
     name: "Home",
     components: {
@@ -101,6 +103,16 @@ export default {
 
             this.$refs.mapy.layerControl.addOverlay(this.skiliftLayer, "Skilifts")
             this.$refs.mapy.layerControl.addOverlay(this.slopeLayer, "Slopes")
+
+
+            // // TEST
+            // let lifts = skiliftService.skilifts.value
+
+            // // Filter to keep all the sections of the same slope
+
+            // let rasse = lifts.features.filter((f) => f.properties.name == 'Rasse-Chaux Ronde')
+            // console.log(rasse)
+            // console.log(turf.length(rasse[0]))
 
         },
 
