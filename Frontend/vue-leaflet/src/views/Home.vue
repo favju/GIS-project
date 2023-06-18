@@ -6,9 +6,9 @@
         <p>Click on a slope, a skilift or a restaurant to learn more about it</p>
         <div class="mapAndInfo">
             <Map ref="mapy" />
-            <DetailSkilift ref="detailSkilift" v-if="this.detail === 'skilift'" />
-            <DetailSlope ref="detailSlope" v-if="this.detail === 'slope'" />
-            <DetailRestaurant ref="detailRestaurant" v-if="this.detail === 'restaurant'" />
+            <DetailSkilift ref="detailSkilift" v-show="this.detail === 'skilift'" />
+            <DetailSlope ref="detailSlope" v-show="this.detail === 'slope'" />
+            <DetailRestaurant ref="detailRestaurant" v-show="this.detail === 'restaurant'" />
         </div>
     </div>
 </template>

@@ -20,7 +20,7 @@ export default {
     name: "DetailSkilift",
     data() {
         return {
-            skilift: { "name": "Rasse-Chaux Ronde", "length": "2131.6483", "maxseat": 8, "type": "Télésiège" }
+            skilift: { "name": "default", "length": "default", "maxseat": 0, "type": "default" }
         };
     },
     methods: {

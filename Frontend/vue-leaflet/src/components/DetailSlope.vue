@@ -14,7 +14,7 @@ export default {
     name: "DetailSlope",
     data() {
         return {
-            slope: { name: 'Rasse', difficulty: 'Red', length: '1659.9414' }
+            slope: { name: 'default', difficulty: 'default', length: 'default' }
         };
     },
     methods: {
