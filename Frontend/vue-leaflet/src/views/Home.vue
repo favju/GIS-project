@@ -19,6 +19,7 @@ import DetailSlope from '../components/DetailSlope.vue'
 import DetailRestaurant from '../components/DetailRestaurant.vue'
 import skiliftService from '../services/skiliftService.js'
 import slopeService from '../services/slopeService.js'
+import restaurantService from '../services/restaurantService.js'
 
 import * as turf from '@turf/turf'
 
@@ -41,12 +42,16 @@ export default {
         //L.geoJSON(this.skilift.features).addTo(this.$refs.mapy.mapDiv);
         await slopeService.getSlopes();
         await skiliftService.getSkilifts();
+        await restaurantService.getRestaurants();
         this.testAddLayer();
     },
 
     computed: {
         skilifts() {
             return skiliftService.skilifts.value
+        },
+        restaurants() {
+            return restaurantService.restaurants.value
         },
         slopes() {
             return slopeService.slopes.value
@@ -101,8 +106,23 @@ export default {
             //this.slopeLayer.addTo(this.$refs.mapy.mapDiv);
             //let layerControl = L.control.layers(this.slopeLayer).addTo(this.$refs.mapy.mapDiv);
 
+            this.restaurantLayer = L.geoJSON(this.restaurants,
+                {
+                    style: myStyleBlue,
+                    onEachFeature: (feature, layer) => {
+                        //layer.bindPopup(feature.properties.name);
+                        layer.bindTooltip(feature.properties.name).openTooltip();
+                        layer.on('click', (ev) => {
+                            this.changeDetailRestaurant(feature.properties) // ev is an event object (MouseEvent in this case)
+
+                        });
+                    },
+
+                }).addTo(this.$refs.mapy.mapDiv);
+
             this.$refs.mapy.layerControl.addOverlay(this.skiliftLayer, "Skilifts")
             this.$refs.mapy.layerControl.addOverlay(this.slopeLayer, "Slopes")
+            this.$refs.mapy.layerControl.addOverlay(this.restaurantLayer, "Restaurants")
 
 
             // // TEST
