@@ -36,13 +36,13 @@ export default {
 
     computed: {
         slopes() {
-            return slopeService.slopes.value
+            return slopeService.slopesSection.value
         }
     },
     async mounted() {
 
 
-        await slopeService.getSlopes();
+        await slopeService.getSlopesSections();
         this.$refs.mapy.mapDiv.on('click', (event) => {
             // Remove old marker if it exists
             if (this.marker && this.closestMarker) {
@@ -57,7 +57,7 @@ export default {
 
             // Find neareast point on line?
             // returns all the point at the intersections!
-            let slopesCopy = slopeService.slopes.value
+            let slopesCopy = slopeService.slopesSection.value
             //console.log(slopesCopy)
 
             // Find neareast point on line?
