@@ -183,8 +183,6 @@ export default {
     display: flex;
 }
 
-
-
 h1 {
     color: #559d84;
     margin-left: 20px;
