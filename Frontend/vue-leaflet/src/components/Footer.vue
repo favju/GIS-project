@@ -18,23 +18,7 @@
 
 export default {
     name: "Footer",
-    components: {},
-    data() {
-        return {
-
-        }
-    },
-
-    async mounted() {
-
-    },
-
-    computed: {
-
-    },
-    methods: {
-
-    }
+    components: {}
 }
 </script>
 <style>
@@ -42,11 +26,6 @@ export default {
     position: absolute;
     bottom: 0;
     min-width: 94vw;
-    /* width: 90%; */
-    /* height: 5vh; */
-    /* Footer height */
-
-
 }
 
 #footerContent {
@@ -86,11 +65,6 @@ export default {
         position: relative;
         min-width: 94vw;
         max-width: 94vw;
-        /* width: 90%; */
-        /* height: 5vh; */
-        /* Footer height */
-
-
     }
 }
 </style>

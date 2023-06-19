@@ -1,7 +1,5 @@
 <template>
     <div class="vueContainer">
-
-
         <h1>Explore the resort</h1>
         <p>Click on a slope, a skilift or a restaurant to learn more about it</p>
         <div class="mapAndInfo">
@@ -25,8 +23,6 @@ import skiliftService from '../services/skiliftService.js'
 import slopeService from '../services/slopeService.js'
 import restaurantService from '../services/restaurantService.js'
 
-import * as turf from '@turf/turf'
-
 export default {
     name: "Home",
     components: {
@@ -44,8 +40,6 @@ export default {
         }
     },
     async mounted() {
-        //L.geoJSON(this.skilift.features).addTo(this.$refs.mapy.mapDiv);
-        //await Promise.all([slopeService.getSlopes(), skiliftService.getSkilifts(), restaurantService.getRestaurants()]);
         await restaurantService.getRestaurants()
         this.addRestaurant()
 
@@ -85,7 +79,7 @@ export default {
                         layer.bindTooltip(feature.properties.name).openTooltip();
                         layer.on('click', (ev) => {
                             this.changeDetailRestaurant(feature.properties) // ev is an event object (MouseEvent in this case)
-                            console.log(feature)
+
                         });
                     },
 
@@ -104,7 +98,6 @@ export default {
                 {
                     style: myStyleGrey,
                     onEachFeature: (feature, layer) => {
-                        //layer.bindPopup(feature.properties.name);
                         layer.bindTooltip(feature.properties.name).openTooltip();
                         layer.on('click', (ev) => {
                             this.changeDetailSkilift(feature.properties) // ev is an event object (MouseEvent in this case)
@@ -123,7 +116,6 @@ export default {
                 {
                     onEachFeature: (feature, layer) => {
                         layer.bindTooltip(feature.properties.name).openTooltip();
-                        //layer.bindPopup(feature.properties.name);
                         if (feature.properties.name != 'Connector') {
 
                             layer.on('click', (ev) => {
@@ -145,9 +137,7 @@ export default {
 
             // // TEST
             // let lifts = skiliftService.skilifts.value
-
             // // Filter to keep all the sections of the same slope
-
             // let rasse = lifts.features.filter((f) => f.properties.name == 'Rasse-Chaux Ronde')
             // console.log(rasse)
             // console.log(turf.length(rasse[0]))
@@ -167,10 +157,6 @@ export default {
         changeDetailRestaurant(content) {
             this.detail = "restaurant"
             this.$refs.detailRestaurant.restaurant = content
-        },
-
-        testMakeTransparent() {
-            this.slopeLayer.setStyle({ fillColor: 'black' })
         }
 
     }

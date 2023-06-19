@@ -41,8 +41,6 @@ import Map from "../components/Map.vue";
 import skiliftService from "../services/skiliftService.js";
 import restaurantService from "../services/restaurantService.js";
 
-import axios from "axios";
-
 export default {
   name: "Admin",
   components: {

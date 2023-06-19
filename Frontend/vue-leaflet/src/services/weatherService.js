@@ -8,21 +8,18 @@ let chartData = {
     datasets: [{
         data: [8.4, 8.2, 8.5, 7.4, 7.4, 8.6, 10.7],
         label: 'Temperatures in ºC',
-        backgroundColor: 'red',
-        //borderColor: 'red',
+        backgroundColor: 'red'
     },
     {
         data: [8.4, 8.2, 8.5, 7.4, 7.4, 8.6, 10.7],
         label: 'Precipitation in mm',
-        backgroundColor: 'blue',
-        //borderColor: 'blue',
+        backgroundColor: 'blue'
 
     },
     {
         data: [8.4, 8.2, 8.5, 7.4, 7.4, 8.6, 10.7],
         label: 'Wind in km/h',
-        backgroundColor: 'green',
-        //borderColor: 'green',
+        backgroundColor: 'green'
 
     }
 

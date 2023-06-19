@@ -56,6 +56,4 @@ export default {
   font-size: 34px;
   font-weight: bold;
 }
-
-#navbarSupportedContent {}
 </style>

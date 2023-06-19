@@ -57,12 +57,9 @@ export default {
         // Prepares central point and elevation for all restaurants
         this.restaurants.features.forEach(feature => {
             let center = turf.center(feature)
-            // console.log(center)
-            // console.log(feature.properties.height)
             this.restaurantsCenter.push({ 'center': center, 'elevation': feature.properties.height })
         })
 
-        console.log(this.restaurantsCenter)
 
         // Add "find closest" fonctionality on map click
         this.$refs.mapy.mapDiv.on('click', async (event) => {
@@ -95,8 +92,7 @@ export default {
             slopesCopy.features.forEach(feature => {
                 feature.geometry.coordinates.forEach(multiligne => {
                     multiligne.forEach(point => {
-                        //console.log(point)
-                        var distance = turf.distance([this.latlng.lng, this.latlng.lat], point);
+                        let distance = turf.distance([this.latlng.lng, this.latlng.lat], point);
                         if (distance < closest) {
                             if (point[2] < this.elevation) {
                                 closest = distance
@@ -110,28 +106,23 @@ export default {
 
             this.closestMarker = L.marker([bestpoint[1], bestpoint[0]]).addTo(this.$refs.mapy.mapDiv)
                 .bindPopup('Closest slope')
-            // .openPopup();
             console.log(this.elevation)
 
             // Find nearest restaurant
             var closest = 10000000
             var bestpoint = null
             this.restaurantsCenter.forEach(restaurant => {
-                var distance = turf.distance([this.latlng.lng, this.latlng.lat], restaurant.center);
-                console.log(distance)
+                let distance = turf.distance([this.latlng.lng, this.latlng.lat], restaurant.center);
                 if (distance < closest) {
                     if (restaurant.elevation < this.elevation) {
                         closest = distance
                         bestpoint = restaurant.center.geometry.coordinates
-                        console.log(bestpoint)
                     }
 
                 }
             })
             this.closestRestaurant = L.marker([bestpoint[1], bestpoint[0]]).addTo(this.$refs.mapy.mapDiv)
                 .bindPopup('Closest restaurant')
-            // .openPopup();
-            console.log(this.elevation)
         })
 
         this.testAddLayer()
@@ -140,7 +131,7 @@ export default {
     },
     methods: {
         testAddLayer() {
-            var myStyleYellow = {
+            let myStyleYellow = {
                 "color": "yellow",
                 "weight": 2,
                 "opacity": 1
@@ -166,7 +157,7 @@ export default {
                         layer.bindTooltip(feature.properties.name).openTooltip();
                         layer.on('click', (ev) => {
                             this.changeDetailRestaurant(feature.properties) // ev is an event object (MouseEvent in this case)
-                            console.log(feature)
+
                         });
                     },
 

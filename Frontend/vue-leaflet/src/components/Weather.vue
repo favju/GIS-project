@@ -11,7 +11,6 @@ import weatherService from '../services/weatherService'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, PointElement, LineElement)
 
-
 export default {
     name: 'BarChart',
     components: { Line },
@@ -28,13 +27,7 @@ export default {
             }
         }
     }),
-    computed: {
 
-
-    },
-    methods: {
-
-    },
     async mounted() {
         this.loaded = false
         if (localStorage.getItem("lat") && localStorage.getItem("lng")) {
@@ -47,8 +40,6 @@ export default {
         this.chartData = weatherService.chartData
         localStorage.removeItem("lat")
         localStorage.removeItem("lng")
-        console.log(weatherService.chartData)
-        console.log(weatherService.current_weather)
         this.$parent.marker.bindPopup(
             "Temperature " +
             String(weatherService.current_weather.current_weather.temperature) +
@@ -67,8 +58,6 @@ export default {
 
 @media only screen and (max-width: 992px) {
     .container {
-        /* max-width: 80vw;
-        max-height: auto; */
         min-width: 80vw;
         min-height: 600px;
     }
