@@ -3,7 +3,6 @@
     <h1>Admin</h1>
     <p>On this page you can open and close slopes and restaurant</p>
     <div class="mapAndInfo">
-      <Map ref="mapy" />
       <div id="info">
         <div class="select">
           <div class="info-column">
@@ -12,20 +11,30 @@
               <div class="name">{{ skilift.name }}</div>
               <div class="open-status">
                 <label>
-                  Open:
-                  <input type="checkbox" v-model="skilift.open" @click="updateSkilift(skilift)" />
+                  <input
+                    type="checkbox"
+                    v-model="skilift.open"
+                    @click="updateSkilift(skilift)"
+                  />
                 </label>
               </div>
             </div>
           </div>
           <div class="info-column">
             <h2>Restaurants</h2>
-            <div v-for="restaurant in restaurants" :key="restaurant.id" class="item">
+            <div
+              v-for="restaurant in restaurants"
+              :key="restaurant.id"
+              class="item"
+            >
               <div class="name">{{ restaurant.name }}</div>
               <div class="open-status">
                 <label>
-                  Open:
-                  <input type="checkbox" v-model="restaurant.open" @click="updateRestaurant(restaurant)" />
+                  <input
+                    type="checkbox"
+                    v-model="restaurant.open"
+                    @click="updateRestaurant(restaurant)"
+                  />
                 </label>
               </div>
             </div>
@@ -94,7 +103,6 @@ export default {
   margin-top: 0.5rem;
 }
 
-
 .mapAndInfo {
   display: flex;
 }
@@ -112,6 +120,11 @@ p {
 
 .vueContainer {
   margin: 20px;
+  margin-bottom: 100px;
+  overflow-y: auto;
+}
+.vueContainer::-webkit-scrollbar {
+  background-color: transparent;
 }
 
 #info {
@@ -124,8 +137,8 @@ p {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  max-height: 492.15px;
   min-width: 80%;
+  margin-left: 20px;
 }
 
 #info * {
@@ -137,5 +150,39 @@ p {
     display: flex;
     flex-direction: column;
   }
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s;
+}
+
+input[type="checkbox"]:before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: left 0.3s;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #559d84;
+}
+
+input[type="checkbox"]:checked:before {
+  left: 18px;
 }
 </style>
