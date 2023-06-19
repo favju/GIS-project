@@ -14,10 +14,6 @@ class Skilift(models.Model):
     image = models.CharField(max_length=200)
     geom = models.MultiLineStringField()
 
-    @property
-    def transformed_geom(self):
-        return self.geom.transform(4326, clone=True)
-
     class Meta:
         db_table = "skilifts"
 
@@ -32,10 +28,6 @@ class Slope(models.Model):
     length = models.DecimalField(max_digits=10, decimal_places=4)
     geom = models.MultiLineStringField()
 
-    @property
-    def transformed_geom(self):
-        return self.geom.transform(4326, clone=True)
-
     class Meta:
         db_table = "slopes"
 
@@ -49,10 +41,6 @@ class Restaurant(models.Model):
     open = models.BooleanField()
     image = models.CharField(max_length=250)
     geom = models.MultiPolygonField()
-
-    @property
-    def transformed_geom(self):
-        return self.geom.transform(4326, clone=True)
     
     class Meta:
         db_table = "restaurants"

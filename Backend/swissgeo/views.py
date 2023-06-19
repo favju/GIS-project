@@ -2,7 +2,7 @@ from .models import Skilift, Slope, Restaurant
 from django.db.models.functions import Lower
 from django.contrib.auth.models import User
 from rest_framework import viewsets, permissions
-from .serializers import UserSerializer, SkiliftSerializer, SlopeSerializer, RestaurantSerializer
+from .serializers import UserSerializer, SkiliftGeoSerializer, SlopeGeoSerializer, RestaurantGeoSerializer, RestaurantSerializer, SkiliftSerializer
 from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
 
@@ -16,22 +16,32 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class SkiliftViewSet(viewsets.ModelViewSet):
     queryset = Skilift.objects.all()
+    serializer_class = SkiliftGeoSerializer
+    permission_classes = [permissions.AllowAny]
+
+class SkiliftOpenViewSet(viewsets.ModelViewSet):
+    queryset = Skilift.objects.all()
     serializer_class = SkiliftSerializer
     permission_classes = [permissions.AllowAny]
         
 class RestaurantViewSet(viewsets.ModelViewSet):
     queryset = Restaurant.objects.all()
+    serializer_class = RestaurantGeoSerializer
+    permission_classes = [permissions.AllowAny]
+
+class RestaurantOpenViewSet(viewsets.ModelViewSet):
+    queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
-    permissions_classes = [permissions.AllowAny]
+    permission_classes = [permissions.AllowAny]
 
 class SlopeViewSet(viewsets.ModelViewSet):
     queryset = Slope.objects.all()
-    serializer_class = SlopeSerializer
+    serializer_class = SlopeGeoSerializer
     permission_classes = [permissions.AllowAny]
 
 class UnionSlopeViewSet(viewsets.ModelViewSet):
     queryset = Slope.objects.all()
-    serializer_class = SlopeSerializer
+    serializer_class = SlopeGeoSerializer
     permission_classes = [permissions.AllowAny]
 
     def get_names(self):

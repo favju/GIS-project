@@ -8,26 +8,30 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'email', 'first_name', 'last_name']
 
-class SkiliftSerializer(GeoFeatureModelSerializer):
-    geom = GeometryField(source='transformed_geom')
-    
+class SkiliftGeoSerializer(GeoFeatureModelSerializer):    
     class Meta:
         model = Skilift
         fields = '__all__'
         geo_field = 'geom'
 
-class SlopeSerializer(GeoFeatureModelSerializer):
-    geom = GeometryField(source='transformed_geom')
-    
+class SkiliftSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skilift
+        fields = ['id', 'name', 'open']
+
+class SlopeGeoSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = Slope
         fields = '__all__'
         geo_field = 'geom'
 
-class RestaurantSerializer(GeoFeatureModelSerializer):
-    geom = GeometryField(source='transformed_geom')
-
+class RestaurantGeoSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = Restaurant
         fields = '__all__'
         geo_field = 'geom'
+
+class RestaurantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Restaurant
+        fields = ['id', 'name', 'open']

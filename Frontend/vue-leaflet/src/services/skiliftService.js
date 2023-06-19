@@ -8,5 +8,13 @@ export default {
     getSkilifts() {
         console.log("about to call api")
         return api.get(`skilifts/`).then((response) => skilifts.value = response.data)
+    },
+    getSkiliftsOpen() {
+        console.log("about to call api")
+        return api.get(`skiliftsopen/`).then((response) => skilifts.value = response.data)
+    },
+    updateSkilifts(skiliftId, payload) {
+        console.log("State changed")
+        return api.patch(`skiliftsopen/${skiliftId}/`, payload).then((response) => response.data)
     }
 }

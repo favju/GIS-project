@@ -8,5 +8,13 @@ export default {
     getRestaurants() {
         console.log("about to call api for restaurants")
         return api.get(`restaurants/`).then((response) => restaurants.value = response.data)
+    },
+    getRestaurantsOpen() {
+        console.log("about to call api for restaurants")
+        return api.get(`restaurantsopen/`).then((response) => restaurants.value = response.data)
+    },
+    updateRestaurants(restaurantId, payload) {
+        console.log("State changed")
+        return api.patch(`restaurantsopen/${restaurantId}/`, payload).then((response) => response.data)
     }
 }
