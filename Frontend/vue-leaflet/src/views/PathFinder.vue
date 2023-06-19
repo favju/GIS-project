@@ -145,17 +145,17 @@ export default {
                 "weight": 2,
                 "opacity": 1
             };
-            var myStyleRed = {
-                "color": "red",
-                "weight": 5,
-                "opacity": 1
-            };
 
             this.slopeLayer = L.geoJSON(this.slopes,
                 {
-                    style: myStyleRed,
+
                     onEachFeature: (feature, layer) => {
                         layer.bindTooltip(feature.properties.name).openTooltip();
+                        layer.setStyle({
+                            "color": feature.properties.difficulty,
+                            "weight": 5,
+                            "opacity": 1
+                        })
                     }
                 }).addTo(this.$refs.mapy.mapDiv);
             this.restaurantLayer = L.geoJSON(this.restaurants,

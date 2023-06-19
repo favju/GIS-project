@@ -2,15 +2,18 @@
     <div id="detail" class="card">
         <img class="card-img-top" :src="restaurant.image" alt="Card image cap">
         <div class="card-body">
-            <h3>{{ this.restaurant.name }}</h3>
+            <div id="name-status">
+                <h3>{{ this.restaurant.name }}</h3>
+                <div v-if="restaurant.open">
+                    <h5 style="color: rgb(8, 235, 8);">Open</h5>
+                </div>
+                <div v-else>
+                    <h5 style="color: red;">Closed</h5>
+                </div>
+            </div>
             <h5>Height</h5>
             <p>{{ this.restaurant.height }}</p>
-            <div v-if="restaurant.open">
-                <h5 style="color: rgb(8, 235, 8);">Open</h5>
-            </div>
-            <div v-else>
-                <h5 style="color: red;">Closed</h5>
-            </div>
+
         </div>
     </div>
 </template>
@@ -52,6 +55,17 @@ img {
 
 }
 
+#name-status {
+    display: flex;
+    flex-direction: row;
+}
+
+#name-status h5 {
+    margin-bottom: 0;
+    margin-left: 16px;
+    width: 100%;
+    height: 100%;
+}
 
 @media only screen and (max-width: 992px) {
     #detail {

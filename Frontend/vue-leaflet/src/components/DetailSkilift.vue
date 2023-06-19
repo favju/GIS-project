@@ -3,19 +3,22 @@
         <img class="card-img-top" :src="skilift.image" alt="Card image cap">
 
         <div class="card-body">
-            <h3>{{ this.skilift.name }}</h3>
+            <div id="name-status">
+                <h3>{{ this.skilift.name }}</h3>
+                <div v-if="skilift.open">
+                    <h5 style="color: rgb(8, 235, 8);">Open</h5>
+                </div>
+                <div v-else>
+                    <h5 style="color: red;">Closed</h5>
+                </div>
+            </div>
             <h5>Length</h5>
             <p>{{ this.skilift.length }}</p>
             <h5>Seats</h5>
             <p>{{ this.skilift.maxseat }}</p>
             <h5>Type</h5>
             <p>{{ this.skilift.type }}</p>
-            <div v-if="skilift.open">
-                <h5 style="color: rgb(8, 235, 8);">Open</h5>
-            </div>
-            <div v-else>
-                <h5 style="color: red;">Closed</h5>
-            </div>
+
         </div>
     </div>
 </template>
@@ -57,6 +60,18 @@ img {
 
 }
 
+#name-status {
+    display: flex;
+    flex-direction: row;
+}
+
+#name-status h5 {
+    margin-bottom: 0;
+    margin-left: 16px;
+    width: 100%;
+    height: 100%;
+}
+
 
 @media only screen and (max-width: 992px) {
     #detail {
@@ -65,5 +80,12 @@ img {
         min-width: 80vw;
         min-height: auto;
     }
+
+    #detail img {
+        max-height: 60vw;
+        object-fit: cover;
+
+    }
+
 }
 </style>

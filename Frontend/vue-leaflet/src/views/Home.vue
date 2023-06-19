@@ -74,7 +74,7 @@ export default {
         addRestaurant() {
             var myStyleYellow = {
                 "color": "yellow",
-                "weight": 2,
+                "weight": 5,
                 "opacity": 1
             };
 
@@ -82,7 +82,6 @@ export default {
                 {
                     style: myStyleYellow,
                     onEachFeature: (feature, layer) => {
-                        //layer.bindPopup(feature.properties.name);
                         layer.bindTooltip(feature.properties.name).openTooltip();
                         layer.on('click', (ev) => {
                             this.changeDetailRestaurant(feature.properties) // ev is an event object (MouseEvent in this case)
@@ -94,15 +93,16 @@ export default {
 
             this.$refs.mapy.layerControl.addOverlay(this.restaurantLayer, "Restaurants")
         },
+
         addSkilifts() {
-            var myStyleBlue = {
-                "color": "blue",
+            var myStyleGrey = {
+                "color": "grey",
                 "weight": 5,
                 "opacity": 1
             };
             this.skiliftLayer = L.geoJSON(this.skilifts,
                 {
-                    style: myStyleBlue,
+                    style: myStyleGrey,
                     onEachFeature: (feature, layer) => {
                         //layer.bindPopup(feature.properties.name);
                         layer.bindTooltip(feature.properties.name).openTooltip();
@@ -110,6 +110,7 @@ export default {
                             this.changeDetailSkilift(feature.properties) // ev is an event object (MouseEvent in this case)
 
                         });
+
                     },
 
                 }).addTo(this.$refs.mapy.mapDiv);
@@ -118,15 +119,8 @@ export default {
         },
         addSlopes() {
 
-            var myStyleRed = {
-                "color": "red",
-                "weight": 5,
-                "opacity": 1
-            };
-
             this.slopeLayer = L.geoJSON(this.slopes,
                 {
-                    style: myStyleRed,
                     onEachFeature: (feature, layer) => {
                         layer.bindTooltip(feature.properties.name).openTooltip();
                         //layer.bindPopup(feature.properties.name);
@@ -136,8 +130,12 @@ export default {
                                 this.changeDetailSlope(feature.properties) // ev is an event object (MouseEvent in this case)
 
                             })
-                        }
-                        ;
+                        };
+                        layer.setStyle({
+                            "color": feature.properties.difficulty,
+                            "weight": 5,
+                            "opacity": 1
+                        })
 
                     }
                 }).addTo(this.$refs.mapy.mapDiv);
