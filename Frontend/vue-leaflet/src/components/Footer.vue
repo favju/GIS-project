@@ -23,9 +23,9 @@ export default {
 </script>
 <style>
 #footer {
-    position: absolute;
-    bottom: 0;
+    position: relative;
     min-width: 94vw;
+    max-width: 94vw;
 }
 
 #footerContent {
@@ -34,6 +34,7 @@ export default {
 
     margin: 2vw;
     display: flex;
+
 }
 
 #footer p {

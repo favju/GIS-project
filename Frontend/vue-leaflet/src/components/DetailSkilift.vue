@@ -78,7 +78,7 @@ img {
         /* max-width: 80vw;
         max-height: auto; */
         min-width: 80vw;
-        min-height: auto;
+        min-height: 800px;
     }
 
     #detail img {

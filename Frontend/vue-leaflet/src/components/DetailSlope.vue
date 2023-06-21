@@ -46,5 +46,11 @@ export default {
         min-width: 80vw;
         min-height: auto;
     }
+
+    #detail img {
+        max-height: 60vw;
+        object-fit: cover;
+
+    }
 }
 </style>
