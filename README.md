@@ -2,8 +2,12 @@
 
 # Initialisation
 
-- Create a secrets.json at Bakcend/secrets.json
-- Send an email to julien.favre1@students.hevs.ch or david.gianadda@students.hevs.ch to get the password
+- Clone the repository
+- Create a secrets.json at Backend/secrets.json
+  '''{
+  "DB_PASSWORD": "yourpassword"
+}'''  
+- Send an email to julien.favre1@students.hevs.ch or david.gianadda@students.hevs.ch to get the password and replace it in the secrets.json
 - install and launch docker
 
 ## Launch docker
