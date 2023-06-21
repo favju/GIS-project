@@ -3,7 +3,7 @@
 # Initialisation
 
 - Create a secrets.json at Bakcend/secrets.json
-- Send an email to julien.favre1@students.hevs.ch or david.giannada@students.hevs.ch to get the password
+- Send an email to julien.favre1@students.hevs.ch or david.gianadda@students.hevs.ch to get the password
 - install and launch docker
 
 ## Launch docker
