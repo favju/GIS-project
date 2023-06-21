@@ -1,12 +1,16 @@
 <template>
     <div class="vueContainer">
-        <h1>Find a path brother</h1>
-        <p>Click on the map and it will show you the nearest point on a slope</p>
+        <h1>Find a path</h1>
+        <p>Click on the map and it will show you the nearest point on a slope and the nearest restaurant at a lesser
+            elevation</p>
         <div class="mapAndInfo">
             <Map ref="mapy" />
             <div id="loader" v-if="!loaded">
                 <h2>Loading</h2>
                 <img src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif" />
+            </div>
+            <div v-else>
+                <button>Use your location</button>
             </div>
         </div>
     </div>

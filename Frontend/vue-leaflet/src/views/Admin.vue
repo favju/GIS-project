@@ -6,35 +6,23 @@
       <div id="info">
         <div class="select">
           <div class="info-column">
-            <h2>Skilifts</h2>
+            <h4>Skilifts</h4>
             <div v-for="skilift in skilifts" :key="skilift.id" class="item">
               <div class="name">{{ skilift.name }}</div>
               <div class="open-status">
                 <label>
-                  <input
-                    type="checkbox"
-                    v-model="skilift.open"
-                    @click="updateSkilift(skilift)"
-                  />
+                  <input type="checkbox" v-model="skilift.open" @click="updateSkilift(skilift)" />
                 </label>
               </div>
             </div>
           </div>
           <div class="info-column">
-            <h2>Restaurants</h2>
-            <div
-              v-for="restaurant in restaurants"
-              :key="restaurant.id"
-              class="item"
-            >
+            <h4>Restaurants</h4>
+            <div v-for="restaurant in restaurants" :key="restaurant.id" class="item">
               <div class="name">{{ restaurant.name }}</div>
               <div class="open-status">
                 <label>
-                  <input
-                    type="checkbox"
-                    v-model="restaurant.open"
-                    @click="updateRestaurant(restaurant)"
-                  />
+                  <input type="checkbox" v-model="restaurant.open" @click="updateRestaurant(restaurant)" />
                 </label>
               </div>
             </div>
@@ -105,11 +93,17 @@ export default {
 
 .mapAndInfo {
   display: flex;
+  margin-left: 40px;
 }
 
 h1 {
   color: #559d84;
   margin-left: 20px;
+}
+
+h4 {
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 p {
@@ -123,6 +117,7 @@ p {
   margin-bottom: 100px;
   overflow-y: auto;
 }
+
 .vueContainer::-webkit-scrollbar {
   background-color: transparent;
 }
@@ -145,10 +140,21 @@ p {
   margin: 0;
 }
 
+#select {
+  display: flex;
+}
+
 @media only screen and (max-width: 992px) {
   .mapAndInfo {
     display: flex;
     flex-direction: column;
+  }
+
+  .vueContainer {
+
+    margin-bottom: 0px;
+    margin: 20px;
+    overflow-y: auto;
   }
 }
 
