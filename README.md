@@ -1,6 +1,7 @@
 # GIS-project
 
 # Quick Start  
+### With PowerShell execute the following commands to quickly build and run the application  
 - git clone https://github.com/favju/GIS-project.git  
 - cd .\GIS-project\  
 - New-Item ".\Backend\secrets.json" -ItemType File -Value '{"DB_PASSWORD": "yourPassword"}'  
