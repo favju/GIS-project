@@ -3,21 +3,17 @@ version: "3.9"
 services:
   api:
     build: ./Backend
-    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./Backend:/code
     ports:
       - "8000:8000"
   vue:
-    image: node:lts
-    working_dir: /var/www/html/app/vue-leaflet
-    entrypoint: /usr/local/bin/docker-entrypoint.sh
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    volumes:
-      - ./Frontend:/var/www/html/app
-    command: sh -c "npm install && npm run dev"
-    tty: true
+      
   pgadmin:
     container_name: pgadmin4_container
     image: dpage/pgadmin4
