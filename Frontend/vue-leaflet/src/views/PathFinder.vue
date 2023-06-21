@@ -108,9 +108,12 @@ export default {
         async findClosest(latlng) {
 
             // Remove old marker if it exists
-            if (this.marker && this.closestMarker && this.closestRestaurant) {
+            if (this.marker && this.closestMarker) {
                 this.$refs.mapy.mapDiv.removeLayer(this.marker)
                 this.$refs.mapy.mapDiv.removeLayer(this.closestMarker)
+            }
+
+            if (this.closestRestaurant) {
                 this.$refs.mapy.mapDiv.removeLayer(this.closestRestaurant)
             }
 
@@ -171,7 +174,27 @@ export default {
 
                 }
             })
+
+            // Make sure that there is not a mountain on the way to the restaurant
+            let midpointCheck = turf.midpoint([this.latlng.lng, this.latlng.lat], bestpoint).geometry.coordinates
+            console.log(turf.midpoint([this.latlng.lng, this.latlng.lat], bestpoint).geometry.coordinates)
+            let midpointCheckElevation = 0
+            // Fetch elevation for coordinates of click
+            let urlElevationCheck = 'https://api.open-meteo.com/v1/elevation?latitude='
+                + midpointCheck[1]
+                + '&longitude='
+                + midpointCheck[0]
+            await axios.get(urlElevationCheck)
+                .then((response) => midpointCheckElevation = response.data.elevation[0])
+            console.log("mid point elevation" + midpointCheckElevation)
+            if (midpointCheckElevation > this.elevation) {
+                bestpoint = null
+                console.log("mountain in the way")
+
+            }
+
             if (bestpoint != null) {
+
                 this.closestRestaurant = L.marker([bestpoint[1], bestpoint[0]]).addTo(this.$refs.mapy.mapDiv)
                     .bindPopup('Closest restaurant')
             }
