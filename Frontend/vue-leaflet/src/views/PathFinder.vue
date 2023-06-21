@@ -10,7 +10,7 @@
                 <img src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif" />
             </div>
             <div v-else>
-                <button>Use your location</button>
+                <button @click="getLocation()">Use your location</button>
             </div>
         </div>
     </div>
@@ -34,13 +34,14 @@ export default {
         return {
             detail: "",
             slopeLayer: null,
-            latlng: null,
+            latlng: { lat: '', lng: '' },
             elevation: null,
             marker: null,
             closestMarker: null,
             closestRestaurant: null,
             restaurantsCenter: [],
-            loaded: false
+            loaded: false,
+            hull: null
         }
     },
 
@@ -66,7 +67,46 @@ export default {
 
 
         // Add "find closest" fonctionality on map click
-        this.$refs.mapy.mapDiv.on('click', async (event) => {
+        this.$refs.mapy.mapDiv.on('click', async (event) => this.findClosest(event.latlng))
+
+        this.testAddLayer()
+        this.loaded = true
+
+        this.hull = turf.convex(this.slopes);
+        this.hull = turf.buffer(this.hull, 0.5)
+        L.geoJSON(this.hull).addTo(this.$refs.mapy.mapDiv);
+
+
+    },
+    methods: {
+        getLocation() {
+            // Check if geolocation is supported by the browser
+            if ("geolocation" in navigator) {
+                // Prompt user for permission to access their location
+                navigator.geolocation.getCurrentPosition(
+                    // Success callback function
+                    (position) => {
+                        // Get the user's latitude and longitude coordinates
+                        this.latlng.lat = position.coords.latitude;
+                        this.latlng.lng = position.coords.longitude;
+                        this.findClosest(this.latlng);
+                    },
+                    // Error callback function
+                    (error) => {
+                        // Handle errors, e.g. user denied location sharing permissions
+                        console.error("Error getting user location:", error);
+                    }
+
+
+                );
+
+            } else {
+                // Geolocation is not supported by the browser
+                console.error("Geolocation is not supported by this browser.");
+            }
+        },
+        async findClosest(latlng) {
+
             // Remove old marker if it exists
             if (this.marker && this.closestMarker && this.closestRestaurant) {
                 this.$refs.mapy.mapDiv.removeLayer(this.marker)
@@ -75,8 +115,11 @@ export default {
             }
 
             // Get coordinates of click and add marker to map
-            this.latlng = event.latlng;
+            this.latlng = latlng;
 
+            if (!turf.booleanPointInPolygon([this.latlng.lng, this.latlng.lat], this.hull)) {
+                alert("You are not in the resort")
+            }
             // Fetch elevation for coordinates of click
             let url = 'https://api.open-meteo.com/v1/elevation?latitude='
                 + this.latlng.lat
@@ -108,8 +151,11 @@ export default {
                 })
             });
 
-            this.closestMarker = L.marker([bestpoint[1], bestpoint[0]]).addTo(this.$refs.mapy.mapDiv)
-                .bindPopup('Closest slope')
+            if (bestpoint != null) {
+                this.closestMarker = L.marker([bestpoint[1], bestpoint[0]]).addTo(this.$refs.mapy.mapDiv)
+                    .bindPopup('Closest slope')
+            }
+
             console.log(this.elevation)
 
             // Find nearest restaurant
@@ -125,15 +171,14 @@ export default {
 
                 }
             })
-            this.closestRestaurant = L.marker([bestpoint[1], bestpoint[0]]).addTo(this.$refs.mapy.mapDiv)
-                .bindPopup('Closest restaurant')
-        })
+            if (bestpoint != null) {
+                this.closestRestaurant = L.marker([bestpoint[1], bestpoint[0]]).addTo(this.$refs.mapy.mapDiv)
+                    .bindPopup('Closest restaurant')
+            }
 
-        this.testAddLayer()
-        this.loaded = true
+        },
 
-    },
-    methods: {
+
         testAddLayer() {
             let myStyleYellow = {
                 "color": "yellow",
@@ -215,5 +260,12 @@ p {
     align-items: center;
     justify-self: center;
     text-align: center;
+}
+
+@media only screen and (max-width: 992px) {
+    .mapAndInfo {
+        display: flex;
+        flex-direction: column;
+    }
 }
 </style>
