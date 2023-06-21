@@ -1,13 +1,13 @@
 # GIS-project
 
 # Quick Start  
--git clone https://github.com/favju/GIS-project.git  
--cd .\GIS-project\  
--New-Item ".\Backend\secrets.json" -ItemType File -Value '{"DB_PASSWORD": "yourPassword"}'  
-## change the password with the password you received from us  
--notepad.exe .\Backend\secrets.json  
--docker-compose build  
--docker-compose up  
+- git clone https://github.com/favju/GIS-project.git  
+- cd .\GIS-project\  
+- New-Item ".\Backend\secrets.json" -ItemType File -Value '{"DB_PASSWORD": "yourPassword"}'  
+### change "yourPassword" with the password you received from us  
+- notepad.exe .\Backend\secrets.json  
+- docker-compose build  
+- docker-compose up  
 
 # Getting started  
 
