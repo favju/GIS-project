@@ -8,3 +8,4 @@ __pycache__/
 *.pyc
 backend/swissgeo/migrations/__pycache__
 
+Backend/secrets.json
