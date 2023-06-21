@@ -87,18 +87,30 @@ WSGI_APPLICATION = 'geoweb.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+import json
+import os
+from django.core.exceptions import ImproperlyConfigured
 
+with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+    secrets = json.load(secrets_file)
+
+def get_secret(setting, secrets=secrets):
+    """Get secret setting or fail with ImproperlyConfigured"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        raise ImproperlyConfigured("Set the {} setting".format(setting))
+    
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'postgres',
         'USER': 'postgres@gis-project-db',
-        'PASSWORD': 'eSTGz5Yyjti45GB13laj%',
+        'PASSWORD': get_secret('DB_PASSWORD'),
         'HOST': 'gis-project-db.postgres.database.azure.com',
         'PORT': '5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
