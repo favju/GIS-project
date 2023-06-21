@@ -96,6 +96,10 @@ export default {
   margin-left: 40px;
 }
 
+.vueContainer {
+  margin: 20px;
+}
+
 h1 {
   color: #559d84;
   margin-left: 20px;
@@ -114,7 +118,7 @@ p {
 
 .vueContainer {
   margin: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 0px;
   overflow-y: auto;
 }
 
