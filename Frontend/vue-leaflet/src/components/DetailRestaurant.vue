@@ -70,7 +70,7 @@ img {
 @media only screen and (max-width: 992px) {
     #detail {
         min-width: 80vw;
-        min-height: auto;
+        min-height: 800px;
     }
 }
 </style>
